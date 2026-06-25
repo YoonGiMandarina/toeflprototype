@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TOEFL ITP</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+        <header class="flex justify-between items-center border-b border-gray-200 pb-6 mb-8">
+            <div>
+                <h1 class="text-3xl font-bold text-indigo-600">Plataforma TOEFL ITP</h1>
+                <p class="text-gray-500 text-sm mt-1">Bienvenido de vuelta, Estudiante</p>
+            </div>
+            <button onclick="logout()" class="text-sm font-medium text-red-600 hover:underline cursor-pointer">
+                Cerrar Sesión
+            </button>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <div class="text-amber-500 text-3xl mb-3">🎯</div>
+                    <h2 class="text-xl font-bold mb-2 text-gray-900">Práctica por Secciones</h2>
+                    <p class="text-gray-600 text-sm mb-6">Fortalece tus puntos débiles practicando cada área del examen de forma independiente y sin la presión del tiempo total.</p>
+                </div>
+                <div class="space-y-2">
+                    <button onclick="startPractice('listening')" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-800 font-medium py-2 px-4 rounded-lg text-sm transition-colors text-left flex justify-between cursor-pointer">
+                        <span>🎧 Listening Comprehension</span> <span>→</span>
+                    </button>
+                    <button onclick="startPractice('structure')" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-800 font-medium py-2 px-4 rounded-lg text-sm transition-colors text-left flex justify-between cursor-pointer">
+                        <span>📝 Structure & Written Expression</span> <span>→</span>
+                    </button>
+                    <button onclick="startPractice('reading')" class="w-full bg-green-50 hover:bg-green-100 text-green-800 font-medium py-2 px-4 rounded-lg text-sm transition-colors text-left flex justify-between cursor-pointer">
+                        <span>📖 Reading Comprehension</span> <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border border-indigo-100 flex flex-col justify-between relative ring-2 ring-indigo-600/10">
+                <span class="absolute -top-3 right-4 bg-indigo-600 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">Recomendado</span>
+                <div>
+                    <div class="text-indigo-600 text-3xl mb-3">⏱️</div>
+                    <h2 class="text-xl font-bold mb-2 text-gray-900">Practice TOEFL (Real)</h2>
+                    <p class="text-gray-600 text-sm mb-6">Simula las condiciones reales del examen institucional. Todas las secciones juntas, con tiempo límite estricto y cálculo de puntaje global.</p>
+                </div>
+                <button onclick="startFullTest()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg text-sm transition-colors text-center cursor-pointer shadow-sm">
+                    Iniciar Simulación Completa
+                </button>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <div class="text-emerald-500 text-3xl mb-3">📊</div>
+                    <h2 class="text-xl font-bold mb-2 text-gray-900">Historial de Puntajes</h2>
+                    <p class="text-gray-600 text-sm mb-4">Aquí quedan guardados los resultados de tus simulaciones completas para que midas tu progreso.</p>
+                    
+                    <div id="scores-history" class="space-y-2 max-h-48 overflow-y-auto pr-1 text-xs text-gray-600">
+                        <p class="text-gray-400 italic text-center py-4">No hay exámenes guardados todavía.</p>
+                    </div>
+                </div>
+                <button onclick="clearHistory()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-medium py-2 px-4 rounded-lg text-xs transition-colors mt-4 cursor-pointer text-center">
+                    Limpiar Historial
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Al cargar la página, mostramos los puntajes guardados con anterioridad
+        document.addEventListener("DOMContentLoaded", loadScores);
+
+        function startPractice(section) {
+            alert(`Iniciando modo práctica solo para: ${section.toUpperCase()}.\n(Aquí redireccionarás a tu index.html pasándole un parámetro para filtrar las preguntas).`);
+            // Ejemplo de redirección futura: window.location.href = `index.html?mode=practice&section=${section}`;
+            window.location.href = "index.html";
+        }
+
+        function startFullTest() {
+            // Redirige al examen completo
+            window.location.href = "index.html";
+        }
+
+        function loadScores() {
+            const container = document.getElementById('scores-history');
+            const savedScores = JSON.parse(localStorage.getItem('toefl_scores')) || [];
+
+            if (savedScores.length === 0) {
+                container.innerHTML = `<p class="text-gray-400 italic text-center py-4">No hay exámenes guardados todavía.</p>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            savedScores.forEach((item, index) => {
+                container.innerHTML += `
+                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                        <div class="flex justify-between font-bold text-gray-800 mb-1">
+                            <span>Examen #${index + 1}</span>
+                            <span class="text-indigo-600">${item.totalScore} pts</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-1 text-[10px] text-gray-500">
+                            <span>🎧 L: ${item.listening}</span>
+                            <span>📝 S: ${item.structure}</span>
+                            <span>📖 R: ${item.reading}</span>
+                        </div>
+                        <div class="text-[9px] text-gray-400 mt-1 text-right">${item.date}</div>
+                    </div>
+                `;
+            });
+        }
+
+        function clearHistory() {
+            if (confirm("¿Seguro que deseas borrar todos tus puntajes guardados?")) {
+                localStorage.removeItem('toefl_scores');
+                loadScores();
+            }
+        }
+
+        function logout() {
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
