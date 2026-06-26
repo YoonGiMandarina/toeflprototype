@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL Simulator - Registro</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-indigo-600">Crear Cuenta</h1>
+            <p class="text-sm text-gray-500 mt-1">Únete al simulador oficial TOEFL ITP</p>
+        </div>
+
+        <form id="register-form" onsubmit="handleRegister(event)" class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Nombre Completo</label>
+                <input type="text" id="reg-name" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-indigo-500" placeholder="John Doe">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Correo Electrónico</label>
+                <input type="email" id="reg-email" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-indigo-500" placeholder="correo@ejemplo.com">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Contraseña</label>
+                <input type="password" id="reg-password" required class="w-full border border-gray-200 rounded-xl p-3 text-sm focus:outline-indigo-500" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl transition duration-200 cursor-pointer shadow-md shadow-indigo-100">
+                Registrarse
+            </button>
+        </form>
+
+        <div class="text-center mt-6 pt-4 border-t border-gray-100 text-sm text-gray-500">
+            ¿Ya tienes cuenta? <a href="./login.html" class="text-indigo-600 font-semibold hover:underline">Inicia Sesión</a>
+        </div>
+    </div>
+
+    <script>
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+
+            // Guardar usuario en localStorage
+            const userData = { name, email, password };
+            localStorage.setItem(`user_${email}`, JSON.stringify(userData));
+            
+            alert('¡Registro exitoso! Ahora inicia sesión con tus datos.');
+            window.location.href = './login.html';
+        }
+    </script>
+</body>
+</html>

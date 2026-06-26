@@ -466,20 +466,40 @@
         }
 
         function saveScoreToDevice() {
-            const storageKey = `toefl_score_${currentSection}`;
-            const scoreData = {
-                correctAnswers: score,
-                totalQuestions: filteredQuestions.length,
-                date: new Date().toLocaleDateString()
-            };
-            localStorage.setItem(storageKey, JSON.stringify(scoreData));
+    const storageKey = `toefl_scores_history_${currentSection}`;
+    
+    let history = [];
+    const existingHistory = localStorage.getItem(storageKey);
+    if (existingHistory) {
+        history = JSON.parse(existingHistory);
+    }
 
-            const saveBtn = document.getElementById('save-score-btn');
-            saveBtn.disabled = true;
-            saveBtn.innerText = "✅ Puntaje Almacenado";
-            saveBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            document.getElementById('save-success-msg').classList.remove('hidden');
-        }
+    // Crear el objeto del intento básico
+    const newAttempt = {
+        correctAnswers: score,
+        totalQuestions: filteredQuestions.length,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    // SI ES EL EXAMEN COMPLETO, agregamos el desglose por sección
+    if (currentSection === 'full') {
+        newAttempt.breakdown = {
+            listening: `${sectionScores.listening} / ${sectionTotals.listening}`,
+            structure: `${sectionScores.structure} / ${sectionTotals.structure}`,
+            reading: `${sectionScores.reading} / ${sectionTotals.reading}`
+        };
+    }
+
+    history.push(newAttempt);
+    localStorage.setItem(storageKey, JSON.stringify(history));
+
+    const saveBtn = document.getElementById('save-score-btn');
+    saveBtn.disabled = true;
+    saveBtn.innerText = "✅ Puntaje Almacenado";
+    saveBtn.classList.add('opacity-50', 'cursor-not-allowed');
+    document.getElementById('save-success-msg').classList.remove('hidden');
+    }
     </script>
 </body>
 </html>
