@@ -13,13 +13,21 @@
     <main class="max-w-2xl w-full mx-auto p-4 my-auto">
         <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
             
-            <!-- HEADER COMÚN -->
-            <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-6">
-                <h1 class="text-xl font-bold text-indigo-600 tracking-tight">TOEFL ITP Simulator</h1>
-                <div id="timer" class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold">
-                    Tiempo: --:--
-                </div>
-            </div>
+            <!-- HEADER COMÚN ACTUALIZADO CON BOTÓN DE REGRESO -->
+        <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-6">
+               <div class="flex items-center gap-3">
+                     <!-- Botón Volver con Flecha -->
+                    <button onclick="confirmExit()" class="text-gray-400 hover:text-indigo-600 transition duration-150 cursor-pointer flex items-center justify-center p-1 rounded-lg hover:bg-gray-50" title="Volver al Dashboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                      </svg>
+                 </button>
+                 <h1 class="text-xl font-bold text-indigo-600 tracking-tight">TOEFL ITP Simulator</h1>
+             </div>
+             <div id="timer" class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold">
+               Tiempo: --:--
+             </div>
+         </div>
 
             <!-- PANTALLA 1: INSTRUCCIONES Y ESTRATEGIAS -->
             <div id="instructions-screen" class="block">
@@ -130,7 +138,7 @@
         // Tiempos oficiales en minutos para el modo Full Test
         const SECTION_TIMES = {
             listening: 35 * 60, 
-            structure: 40 * 60, 
+            structure: 25 * 60, 
             reading: 55 * 60    
         };
 
@@ -500,6 +508,18 @@
     saveBtn.classList.add('opacity-50', 'cursor-not-allowed');
     document.getElementById('save-success-msg').classList.remove('hidden');
     }
+    function confirmExit() {
+    // Si está en modo Full Test o ya está respondiendo preguntas, le advertimos antes de salir
+    if (currentSection === 'full' || currentQuestionIndex > 0) {
+        const leave = confirm("⚠️ ¿Estás seguro de que quieres salir? Si regresas al Dashboard perderás el progreso de este examen.");
+        if (leave) {
+            window.location.href = './dashboard.html';
+        }
+    } else {
+        // Si está en la pantalla de instrucciones y no ha empezado, sale directo
+        window.location.href = './dashboard.html';
+    }
+}
     </script>
 </body>
 </html>
