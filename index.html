@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOEFL ITP Simulator</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 min-h-screen flex flex-col justify-between">
 
+    <!-- CONTENEDOR PRINCIPAL -->
     <main class="max-w-2xl w-full mx-auto p-4 my-auto">
         <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
             
+            <!-- HEADER COMÚN -->
             <div class="flex justify-between items-center border-b border-gray-100 pb-4 mb-6">
                 <h1 class="text-xl font-bold text-indigo-600 tracking-tight">TOEFL ITP Simulator</h1>
                 <div id="timer" class="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-semibold">
-                    Tiempo: 00:00
+                    Tiempo: --:--
                 </div>
             </div>
 
+            <!-- PANTALLA 1: INSTRUCCIONES Y ESTRATEGIAS -->
             <div id="instructions-screen" class="block">
                 <h2 id="inst-title" class="text-2xl font-bold text-gray-900 mb-2">Cargando Sección...</h2>
                 <span id="inst-badge" class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded">Instrucciones Oficiales</span>
                 
                 <p id="inst-text" class="text-gray-600 my-4 leading-relaxed"></p>
                 
+                <!-- Cuadro de Tips & Estrategias -->
                 <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-xl mb-6">
                     <h3 class="font-bold text-emerald-900 flex items-center gap-2">
                         💡 Estrategia para Mejorar tu Score:
@@ -36,15 +41,18 @@
                 </button>
             </div>
 
+            <!-- PANTALLA 2: EXAMEN -->
             <div id="test-screen" class="hidden">
                 <div class="mb-4">
                     <span id="section-badge" class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded tracking-wide">Sección</span>
                     
+                    <!-- REPRODUCTOR DE AUDIO -->
                     <div id="audio-container" class="hidden mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl">
                         <p class="text-xs font-bold text-slate-500 mb-1 flex items-center gap-1">🎧 Escucha el archivo de audio:</p>
                         <audio id="audio-player" controls class="w-full"></audio>
                     </div>
 
+                    <!-- TEXTO / PÁRRAFO LARGO -->
                     <div id="passage-container" class="hidden mt-4 p-4 bg-amber-50/50 border border-amber-200 rounded-xl max-h-48 overflow-y-auto text-sm text-gray-700 leading-relaxed shadow-inner">
                         <p class="font-bold text-amber-900 mb-1 text-xs uppercase tracking-wider">Reading Passage:</p>
                         <p id="passage-text"></p>
@@ -53,26 +61,44 @@
                     <p id="question-text" class="text-lg font-medium text-gray-900 mt-4 leading-snug">Aquí va la pregunta</p>
                 </div>
 
+                <!-- OPCIONES DE RESPUESTA -->
                 <div id="options-container" class="space-y-3 my-6"></div>
 
+                <!-- BOTÓN DE ACCIÓN -->
                 <button id="action-btn" onclick="handleAction()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer">
                     Comprobar
                 </button>
 
+                <!-- CONTENEDOR DE FEEDBACK -->
                 <div id="feedback-container" class="hidden mt-4 p-4 rounded-xl border">
                     <p id="feedback-status" class="font-bold text-base"></p>
                     <p id="feedback-text" class="text-sm text-gray-600 mt-1 leading-relaxed"></p>
                 </div>
             </div>
 
-            <div id="result-screen" class="hidden text-center py-6">
-                <div class="w-20 h-20 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🎯</div>
-                <h2 class="text-2xl font-bold text-gray-900">¡Sección Finalizada!</h2>
-                <p class="text-gray-500 mt-2">Has completado los reactivos disponibles de esta categoría.</p>
+            <!-- PANTALLA 3: RESULTADOS DETALLADOS -->
+            <div id="result-screen" class="hidden text-center py-4">
+                <div class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">🎯</div>
+                <h2 class="text-2xl font-bold text-gray-900">¡Evaluación Finalizada!</h2>
+                <p class="text-gray-500 text-sm mt-1">Aquí tienes el desglose del rendimiento obtenido:</p>
                 
-                <div class="bg-gray-50 rounded-xl p-4 my-6 inline-block min-w-[200px]">
-                    <span class="text-gray-400 block uppercase tracking-wider text-xs font-semibold">Tu Puntaje</span>
-                    <span id="final-score" class="text-4xl font-black text-indigo-600">0 / 0</span>
+                <div class="my-5 text-left bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-2 max-w-sm mx-auto">
+                    <div class="flex justify-between border-b border-gray-200 pb-1.5 text-sm">
+                        <span class="text-gray-600 font-medium">🎧 Listening Score:</span>
+                        <span id="breakdown-listening" class="font-bold text-gray-900">0 / 0</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-1.5 text-sm">
+                        <span class="text-gray-600 font-medium">✍️ Structure Score:</span>
+                        <span id="breakdown-structure" class="font-bold text-gray-900">0 / 0</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-200 pb-1.5 text-sm">
+                        <span class="text-gray-600 font-medium">📖 Reading Score:</span>
+                        <span id="breakdown-reading" class="font-bold text-gray-900">0 / 0</span>
+                    </div>
+                    <div class="flex justify-between pt-2 font-bold text-base text-indigo-600">
+                        <span>🏆 SCORE TOTAL:</span>
+                        <span id="final-score">0 / 0</span>
+                    </div>
                 </div>
 
                 <button id="save-score-btn" onclick="saveScoreToDevice()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 mb-3 cursor-pointer shadow-md">
@@ -93,78 +119,133 @@
 
     <script>
         // ==========================================
-        // BANCO DE PREGUNTAS (Aquí agregas o modificas las que quieras)
+        // LÍMITES OFICIALES DE PREGUNTAS (TOEFL ITP)
+        // ==========================================
+        const LIMITES_SECCION = {
+            listening: 50,
+            structure: 40,
+            reading: 50
+        };
+
+        // Tiempos oficiales en minutos para el modo Full Test
+        const SECTION_TIMES = {
+            listening: 35 * 60, 
+            structure: 40 * 60, 
+            reading: 55 * 60    
+        };
+
+        // ==========================================
+        // BANCO DE PREGUNTAS GENERAL (Simulación muestra)
         // ==========================================
         const questionsDatabase = [
             {
                 section: "listening",
-                // PASO EXTRA: Pon aquí la ruta de tu archivo mp3 (ejemplo: "audios/listening_1.mp3")
                 audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", 
                 question: "(Man) My watch stopped again. (Woman) You should get a new battery. (Narrator) What does the woman suggest?",
-                options: [
-                    "Buying a completely new watch.",
-                    "Replacing the battery in the watch.",
-                    "Stopping by the watch repair shop.",
-                    "Keeping track of the time yourself."
-                ],
+                options: ["Buying a completely new watch.", "Replacing the battery in the watch.", "Stopping by the watch repair shop.", "Keeping track of the time yourself."],
                 answer: 1,
-                explanation: "La mujer sugiere directamente cambiar la batería con la frase 'You should get a new battery'."
+                explanation: "La mujer sugiere directamente cambiar la batería."
+            },
+            {
+                section: "listening",
+                audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", 
+                question: "(Woman) Are you ready for the seminar? (Man) I haven't even opened the book. (Narrator) What does the man mean?",
+                options: ["He is fully prepared.", "He hasn't started studying yet.", "He forgot his book at home.", "The seminar was cancelled."],
+                answer: 1,
+                explanation: "Indica que no ha empezado a estudiar."
             },
             {
                 section: "structure",
                 question: "The architectural design of the building _______ by the committee last week.",
-                options: [
-                    "was approved",
-                    "approves",
-                    "has approved",
-                    "approving"
-                ],
+                options: ["was approved", "approves", "has approved", "approving"],
                 answer: 0,
-                explanation: "Se requiere voz pasiva en pasado simple ('was approved') porque el diseño recibió la acción la semana pasada."
+                explanation: "Se requiere voz pasiva en pasado simple ('was approved')."
+            },
+            {
+                section: "structure",
+                question: "Rarely _______ to the theater because of her busy academic schedule.",
+                options: ["she goes", "does she go", "is she going", "she has gone"],
+                answer: 1,
+                explanation: "La palabra negativa 'Rarely' exige inversión gramatical."
             },
             {
                 section: "reading",
-                // PASO EXTRA: Añade el texto de lectura aquí. Se mantendrá visible en pantalla durante la pregunta
-                passage: "Photosynthesis is the process used by plants and other organisms to convert light energy into chemical energy. This process is primarily driven by the absorption of solar energy by chlorophyll pigments located within the chloroplasts of plant cells.",
+                passage: "Photosynthesis is the process used by plants to convert light energy into chemical energy...",
                 question: "According to paragraph 1, what is the primary cause of photosynthesis?",
-                options: [
-                    "Decline in moisture levels.",
-                    "Absorption of solar energy by chlorophyll.",
-                    "An increase in carbon dioxide.",
-                    "Fluctuations in ambient temperature."
-                ],
+                options: ["Decline in moisture.", "Absorption of solar energy by chlorophyll.", "An increase in CO2.", "Fluctuations in temperature."],
                 answer: 1,
-                explanation: "El texto afirma que el proceso es guiado principalmente por la absorción de energía solar a través de la clorofila."
+                explanation: "El texto afirma que es guiado por la absorción de energía solar."
+            },
+            {
+                section: "reading",
+                passage: "The Great Depression was a severe worldwide economic depression that took place mostly during the 1930s...",
+                question: "In what decade did the Great Depression primarily occur?",
+                options: ["1910s", "1920s", "1930s", "1940s"],
+                answer: 2,
+                explanation: "El fragmento menciona la década de los 1930s."
             }
         ];
 
-        // ==========================================
-        // INFORMACIÓN DE INSTRUCCIONES
-        // ==========================================
         const sectionInfo = {
-            listening: { title: "Listening Comprehension", text: "Mide tu habilidad para entender conversaciones en inglés formal.", strategy: "Enfócate en la segunda línea del diálogo." },
-            structure: { title: "Structure & Written Expression", text: "Evalúa tu dominio de la gramática y estructuras escritas.", strategy: "Primero localiza el Sujeto y el Verbo principal." },
-            reading: { title: "Reading Comprehension", text: "Mide tu capacidad de comprender pasajes de textos académicos.", strategy: "Haz un escaneo rápido (scanning) para buscar la palabra clave." },
-            full: { title: "TOEFL ITP Full Test Simulator", text: "Responderás de manera consecutiva reactivos de todas las áreas evaluadas en la prueba oficial.", strategy: "Administra bien tu tiempo. No te estanques demasiado en una sola pregunta." }
+            listening: { title: "Listening Comprehension", text: "Mide tu habilidad para entender conversaciones en inglés formal. Esta sección consta de un máximo de 50 reactivos al azar.", strategy: "Enfócate en la segunda línea de diálogo de las personas." },
+            structure: { title: "Structure & Written Expression", text: "Evalúa tu dominio de la gramática y estructuras escritas formales. Esta sección consta de un máximo de 40 reactivos al azar.", strategy: "Primero localiza el Sujeto y el Verbo principal de la oración." },
+            reading: { title: "Reading Comprehension", text: "Mide tu capacidad de comprender pasajes de textos académicos. Esta sección consta de un máximo de 50 reactivos al azar.", strategy: "Haz un escaneo rápido (scanning) para buscar la palabra clave." },
+            full: { title: "TOEFL ITP Full Test Simulator", text: "Iniciarás el examen completo con tiempos límites oficiales por sección y sin feedback inmediato. La prueba consta de hasta 140 reactivos seleccionados de forma aleatoria.", strategy: "Tiempos estrictos: Listening (35 min/50 acts), Structure (40 min/40 acts) y Reading (55 min/50 acts)." }
         };
 
         // VARIABLES DE ESTADO
         const urlParams = new URLSearchParams(window.location.search);
         const currentSection = (urlParams.get('section') || 'listening').toLowerCase();
-
-        // MÁGIA PARA EL EXAMEN COMPLETO: Si es "full", junta todo; si no, filtra la sección
-        const filteredQuestions = currentSection === 'full' 
-            ? questionsDatabase 
-            : questionsDatabase.filter(q => q.section === currentSection);
-
+        
+        let filteredQuestions = [];
         let currentQuestionIndex = 0;
         let score = 0;
+        
+        let sectionScores = { listening: 0, structure: 0, reading: 0 };
+        let sectionTotals = { listening: 0, structure: 0, reading: 0 };
+
+        let lastSectionSeen = null;
         let selectedAnswerIndex = null;
         let isFeedbackState = false;
+        
         let timerInterval;
-        let secondsElapsed = 0;
+        let secondsRemaining = 0; 
+        let secondsElapsed = 0;   
 
         window.onload = function() {
+            if (currentSection === 'full') {
+                // MODO FULL: Procesa las tres secciones respetando el límite individual de cada una
+                const list = ['listening', 'structure', 'reading'];
+                list.forEach(secName => {
+                    let secQuestions = questionsDatabase.filter(q => q.section === secName);
+                    
+                    // Mezclar de forma aleatoria
+                    for (let i = secQuestions.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [secQuestions[i], secQuestions[j]] = [secQuestions[j], secQuestions[i]];
+                    }
+                    
+                    // Recortar al límite oficial establecido (50, 40 o 50)
+                    const maxQuestions = LIMITES_SECCION[secName];
+                    const selected = secQuestions.slice(0, maxQuestions);
+                    
+                    filteredQuestions = filteredQuestions.concat(selected);
+                    sectionTotals[secName] = selected.length;
+                });
+            } else {
+                // MODO PRÁCTICA INDIVIDUAL: También aplica la aleatoriedad y el tope oficial
+                let secQuestions = questionsDatabase.filter(q => q.section === currentSection);
+                
+                for (let i = secQuestions.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [secQuestions[i], secQuestions[j]] = [secQuestions[j], secQuestions[i]];
+                }
+                
+                const maxQuestions = LIMITES_SECCION[currentSection];
+                filteredQuestions = secQuestions.slice(0, maxQuestions);
+                sectionTotals[currentSection] = filteredQuestions.length;
+            }
+
             const info = sectionInfo[currentSection] || sectionInfo['full'];
             document.getElementById('inst-title').innerText = info.title;
             document.getElementById('inst-text').innerText = info.text;
@@ -174,6 +255,14 @@
         function startTest() {
             document.getElementById('instructions-screen').classList.add('hidden');
             document.getElementById('test-screen').classList.remove('hidden');
+            
+            if (currentSection === 'full') {
+                const q = filteredQuestions[currentQuestionIndex];
+                if (lastSectionSeen !== q.section) {
+                    lastSectionSeen = q.section;
+                    secondsRemaining = SECTION_TIMES[q.section];
+                }
+            }
             startTimer();
             showQuestion();
         }
@@ -181,11 +270,32 @@
         function startTimer() {
             clearInterval(timerInterval);
             timerInterval = setInterval(() => {
-                secondsElapsed++;
-                const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
-                const secs = String(secondsElapsed % 60).padStart(2, '0');
-                document.getElementById('timer').innerText = `Tiempo: ${mins}:${secs}`;
+                if (currentSection === 'full') {
+                    if (secondsRemaining <= 0) {
+                        clearInterval(timerInterval);
+                        alert(`¡Se acabó el tiempo oficial de esta sección! Pasando a la siguiente...`);
+                        forceNextSection();
+                        return;
+                    }
+                    secondsRemaining--;
+                    const mins = String(Math.floor(secondsRemaining / 60)).padStart(2, '0');
+                    const secs = String(secondsRemaining % 60).padStart(2, '0');
+                    document.getElementById('timer').innerText = `Tiempo Secc: ${mins}:${secs}`;
+                } else {
+                    secondsElapsed++;
+                    const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+                    const secs = String(secondsElapsed % 60).padStart(2, '0');
+                    document.getElementById('timer').innerText = `Tiempo: ${mins}:${secs}`;
+                }
             }, 1000);
+        }
+
+        function forceNextSection() {
+            const currentSecName = filteredQuestions[currentQuestionIndex].section;
+            while (currentQuestionIndex < filteredQuestions.length && filteredQuestions[currentQuestionIndex].section === currentSecName) {
+                currentQuestionIndex++;
+            }
+            showQuestion();
         }
 
         function showQuestion() {
@@ -193,13 +303,8 @@
             isFeedbackState = false;
             document.getElementById('feedback-container').classList.add('hidden');
             
-            // Pausar cualquier audio reproduciéndose de la pregunta anterior
             const audioPlayer = document.getElementById('audio-player');
             audioPlayer.pause();
-
-            const actionBtn = document.getElementById('action-btn');
-            actionBtn.innerText = "Comprobar";
-            actionBtn.className = "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer";
 
             if (currentQuestionIndex >= filteredQuestions.length) {
                 endTest();
@@ -207,11 +312,37 @@
             }
 
             const q = filteredQuestions[currentQuestionIndex];
+
+            if (currentSection === 'full' && lastSectionSeen !== null && lastSectionSeen !== q.section) {
+                clearInterval(timerInterval);
+                lastSectionSeen = q.section;
+                secondsRemaining = SECTION_TIMES[q.section]; 
+                
+                const info = sectionInfo[q.section];
+                document.getElementById('inst-title').innerText = `Siguiente Etapa: ${info.title}`;
+                document.getElementById('inst-text').innerText = info.text;
+                document.getElementById('inst-strategy').innerText = info.strategy;
+
+                document.getElementById('test-screen').classList.add('hidden');
+                document.getElementById('instructions-screen').classList.remove('hidden');
+                return;
+            }
+
+            lastSectionSeen = q.section;
+
+            const actionBtn = document.getElementById('action-btn');
+            if (currentSection === 'full') {
+                actionBtn.innerText = "Siguiente Pregunta";
+                actionBtn.className = "w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer";
+            } else {
+                actionBtn.innerText = "Comprobar";
+                actionBtn.className = "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer";
+            }
             
             document.getElementById('section-badge').innerText = `Sección: ${q.section.toUpperCase()} | Pregunta ${currentQuestionIndex + 1} de ${filteredQuestions.length}`;
             document.getElementById('question-text').innerText = q.question;
 
-            // CONTROL DE AUDIO (Listening)
+            // CONTROL AUDIO
             const audioContainer = document.getElementById('audio-container');
             if (q.audio) {
                 audioPlayer.src = q.audio;
@@ -220,7 +351,7 @@
                 audioContainer.classList.add('hidden');
             }
 
-            // CONTROL DE PARRAFO (Reading)
+            // CONTROL PARRAFO
             const passageContainer = document.getElementById('passage-container');
             if (q.passage) {
                 document.getElementById('passage-text').innerText = q.passage;
@@ -229,7 +360,7 @@
                 passageContainer.classList.add('hidden');
             }
 
-            // Renderizar Opciones
+            // Opciones
             const container = document.getElementById('options-container');
             container.innerHTML = "";
             q.options.forEach((option, index) => {
@@ -246,7 +377,7 @@
         }
 
         function selectOption(index) {
-            if (isFeedbackState) return;
+            if (isFeedbackState && currentSection !== 'full') return; 
             if (selectedAnswerIndex !== null) {
                 const prevBox = document.getElementById(`option-${selectedAnswerIndex}`);
                 if (prevBox) prevBox.className = "flex items-center gap-3 border-2 border-gray-200 rounded-xl p-3.5 cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition duration-150";
@@ -256,19 +387,31 @@
         }
 
         function handleAction() {
-            if (!isFeedbackState) {
-                if (selectedAnswerIndex === null) {
-                    alert("Por favor, selecciona una opción antes de continuar.");
-                    return;
+            if (selectedAnswerIndex === null) {
+                alert("Por favor, selecciona una opción antes de continuar.");
+                return;
+            }
+
+            const q = filteredQuestions[currentQuestionIndex];
+
+            if (currentSection === 'full') {
+                if (selectedAnswerIndex === q.answer) {
+                    score++;
+                    sectionScores[q.section]++;
                 }
-                checkAnswer();
-            } else {
                 currentQuestionIndex++;
                 showQuestion();
+            } else {
+                if (!isFeedbackState) {
+                    checkAnswerIndividual();
+                } else {
+                    currentQuestionIndex++;
+                    showQuestion();
+                }
             }
         }
 
-        function checkAnswer() {
+        function checkAnswerIndividual() {
             isFeedbackState = true;
             const q = filteredQuestions[currentQuestionIndex];
             const feedbackContainer = document.getElementById('feedback-container');
@@ -304,7 +447,18 @@
             clearInterval(timerInterval);
             document.getElementById('test-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
+            
             document.getElementById('final-score').innerText = `${score} / ${filteredQuestions.length}`;
+            
+            if (currentSection === 'full') {
+                document.getElementById('breakdown-listening').innerText = `${sectionScores.listening} / ${sectionTotals.listening}`;
+                document.getElementById('breakdown-structure').innerText = `${sectionScores.structure} / ${sectionTotals.structure}`;
+                document.getElementById('breakdown-reading').innerText = `${sectionScores.reading} / ${sectionTotals.reading}`;
+            } else {
+                document.getElementById('breakdown-listening').innerText = currentSection === 'listening' ? `${score} / ${filteredQuestions.length}` : "N/A";
+                document.getElementById('breakdown-structure').innerText = currentSection === 'structure' ? `${score} / ${filteredQuestions.length}` : "N/A";
+                document.getElementById('breakdown-reading').innerText = currentSection === 'reading' ? `${score} / ${filteredQuestions.length}` : "N/A";
+            }
             
             document.getElementById('save-score-btn').disabled = false;
             document.getElementById('save-score-btn').classList.remove('opacity-50', 'cursor-not-allowed');
