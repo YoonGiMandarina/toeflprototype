@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL ITP Simulator - Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 min-h-screen flex flex-col items-center p-4">
+
+    <!-- BARRA DE NAVEGACIÓN SUPERIOR (HEADER) -->
+    <header class="max-w-2xl w-full bg-white border border-gray-100 py-4 px-6 flex justify-between items-center rounded-2xl shadow-sm mb-6">
+        <h1 class="text-lg font-bold text-indigo-600 tracking-tight flex items-center gap-2">
+            🎯 <span>TOEFL ITP Portal</span>
+        </h1>
+        
+        <div class="flex items-center gap-4">
+            <!-- Botón Ver Perfil -->
+            <button onclick="window.location.href='./profiletest.html'" class="flex items-center gap-1.5 text-sm font-semibold text-gray-600 hover:text-indigo-600 transition cursor-pointer">
+                <span>👨‍🎓</span> My profile
+            </button>
+            
+            <!-- Botón Cerrar Sesión -->
+            <button onclick="logout()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold py-2 px-3 rounded-xl text-xs transition cursor-pointer">
+                Logout
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="max-w-2xl w-full space-y-4">
+        
+        <!-- BIENVENIDA DINÁMICA -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-900 mb-1">Hello, <span id="welcome-name" class="text-indigo-600">Student</span>!</h2>
+            <p class="text-gray-500 text-sm">Select a mode to start your preparation for the TOEFL ITP exam.</p>
+        </div>
+
+        <!-- TARJETA: FULL EXAM SIMULATOR -->
+        <div class="bg-gradient-to-br from-indigo-600 to-violet-700 rounded-2xl shadow-lg p-6 text-white relative overflow-hidden shadow-indigo-100">
+            <div class="absolute right-4 top-4 text-6xl opacity-15 pointer-events-none">🏆</div>
+            <span class="bg-indigo-500/50 text-white text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Official Simulator</span>
+            <h3 class="text-xl font-bold mt-2">TOEFL ITP Full Test</h3>
+            <p class="text-indigo-100 text-sm mt-1 mb-5 max-w-md">140 random questions with strict timing by section (35/25/55 mins). No immediate feedback to replicate the real experience.</p>
+            <button onclick="startMode('full')" class="bg-white text-indigo-700 font-bold px-5 py-2.5 rounded-xl text-sm transition hover:bg-indigo-50 cursor-pointer shadow-md shadow-indigo-900/20">
+                Start Full Test
+            </button>
+        </div>
+
+        <!-- SECCIÓN: PRÁCTICAS POR ÁREA -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Tarjeta 1: Listening -->
+            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-xl mb-3">🎧</div>
+                    <h4 class="font-bold text-gray-900 text-base">Listening Practice</h4>
+                    <p class="text-gray-500 text-xs mt-1 mb-4">Directed practice with audio files and immediate feedback.</p>
+                </div>
+                <button onclick="startMode('listening')" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold py-2 rounded-xl text-xs transition cursor-pointer text-center">
+                    Practice Listening
+                </button>
+            </div>
+
+            <!-- Tarjeta 2: Structure -->
+            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-xl mb-3">✍️</div>
+                    <h4 class="font-bold text-gray-900 text-base">Structure Practice</h4>
+                    <p class="text-gray-500 text-xs mt-1 mb-4">Grammar and formal written expression exercises with explanations.</p>
+                </div>
+                <button onclick="startMode('structure')" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold py-2 rounded-xl text-xs transition cursor-pointer text-center">
+                    Practice Structure
+                </button>
+            </div>
+
+            <!-- Tarjeta 3: Reading -->
+            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-xl mb-3">📖</div>
+                    <h4 class="font-bold text-gray-900 text-base">Reading Practice</h4>
+                    <p class="text-gray-500 text-xs mt-1 mb-4">Directed reading with academic passages and comprehension exercises.</p>
+                </div>
+                <button onclick="startMode('reading')" class="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-2 rounded-xl text-xs transition cursor-pointer text-center">
+                    Practice Reading
+                </button>
+            </div>
+
+        </div>
+
+        <!-- TARJETA/BOTÓN DEL TUTOR IA -->
+        <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-5 flex flex-col justify-between shadow-sm">
+            <div class="flex items-center gap-4 mb-3">
+                <div class="w-12 h-12 flex-shrink-0 bg-white rounded-xl flex items-center justify-center shadow-sm overflow-hidden p-1">
+                    <img src="ISOTIPO toefl_Mesa de trabajo real.png" alt="Tofi" class="w-full h-full object-contain">
+                </div>
+            <div>
+                <h3 class="text-lg font-bold text-indigo-900">Chat with Tofi</h3>
+                <span class="bg-indigo-200 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Your AI Tutor</span>
+            </div>
+        </div>
+        <p class="text-indigo-950 text-sm leading-relaxed mb-4">
+            Do you have questions about grammar, vocabulary, or want to practice listening or reading exercises? Ask Tofi, your expert virtual tutor in TOEFL ITP.
+        </p>
+        <button onclick="window.location.href='./tutortest.html'" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl transition duration-200 cursor-pointer text-center shadow-md shadow-indigo-100">
+            Chat with Tofi 💬
+        </button>
+    </div>
+    </main>
+
+    <script>
+        // CONTROL DE SEGURIDAD AL CARGAR LA PÁGINA
+        window.onload = function() {
+            const loggedUser = localStorage.getItem('currentUser');
+            
+            if (!loggedUser) {
+                // Si nadie ha iniciado sesión, expulsar de regreso al login
+                window.location.href = './logintest.html';
+                return;
+            }
+
+            // Si todo está bien, pintar el nombre real del alumno en el saludo
+            const userData = JSON.parse(loggedUser);
+            document.getElementById('welcome-name').innerText = userData.name;
+        };
+
+        // Redirección con parámetros a la pantalla del test
+        function startMode(section) {
+            window.location.href = `./indextest.html?section=${section}`;
+        }
+
+        // Cierre de Sesión seguro
+        function logout() {
+            localStorage.removeItem('currentUser'); // Destruye el pase de acceso
+            window.location.href = './logintest.html'; // Redirige al login
+        }
+    </script>
+</body>
+</html>

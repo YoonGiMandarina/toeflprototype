@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat con Tofi - TOEFL Tutor</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 min-h-screen flex flex-col justify-between">
+
+    <main class="max-w-2xl w-full mx-auto p-4 flex flex-col h-screen max-h-[900px] my-auto">
+        <div class="bg-white rounded-2xl shadow-xl flex flex-col h-full overflow-hidden border border-gray-100">
+            
+            <div class="flex justify-between items-center border-b border-gray-100 p-4 bg-indigo-600 text-white">
+                <div class="flex items-center gap-3">
+                    <button onclick="window.location.href='./dashboardtest.html'" class="text-white/80 hover:text-white transition duration-150 cursor-pointer flex items-center justify-center p-1.5 rounded-lg hover:bg-indigo-700" title="Volver al Dashboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                        </svg>
+                    </button>
+                    
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden p-0.5 shadow-inner">
+                        <img src="ISOTIPO toefl_Mesa de trabajo real.png" alt="Tofi" class="w-full h-full object-contain">
+                    </div>
+                    
+                    <div>
+                        <h1 class="text-base font-bold tracking-tight leading-none">Tofi AI Tutor</h1>
+                        <p class="text-[11px] text-indigo-200 mt-0.5 flex items-center gap-1">
+                            <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> Online • TOEFL ITP Expert
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/50 shadow-inner">
+                
+                <div class="flex items-start gap-3 max-w-[85%]">
+                    <div class="w-9 h-9 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center overflow-hidden p-0.5 shadow-sm">
+                        <img src="ISOTIPO toefl_Mesa de trabajo real.png" alt="Tofi" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-white border border-gray-100 rounded-2xl rounded-tl-none p-3.5 shadow-sm">
+                        <p class="text-sm text-gray-800 leading-relaxed">
+                            Hi! I'm <b>Tofi</b>, your personalized AI tutor. 🐾 I'm here to help you master the TOEFL ITP. Do you have any questions about grammar rules, vocabulary, or want to practice listening or reading exercises? Ask me anything!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="p-3 border-t border-gray-100 bg-white">
+                <form id="chat-form" onsubmit="handleSendMessage(event)" class="flex gap-2 items-center">
+                    <input type="text" id="user-input" placeholder="Write your question here..." autocomplete="off" class="flex-1 bg-gray-50 border border-gray-200 text-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition duration-150">
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold p-3 rounded-xl transition duration-150 cursor-pointer flex items-center justify-center shadow-md shadow-indigo-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 transform rotate-90">
+                            <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // CONFIGURACIÓN DE PERSONALIDAD (SYSTEM PROMPT)
+        const TOFI_SYSTEM_PROMPT = "Actúa como Tofi, un tierno y sumamente experto gato tutor virtual especializado en el examen TOEFL ITP. Asiste a estudiantes de habla hispana a entrenar y resolver dudas sobre Listening, Structure y Reading. Responde de forma didáctica, clara, estructurada con viñetas, incluye ejemplos en inglés con su traducción al español, y mantén una personalidad amigable con sutiles referencias carismáticas felinas (como ¡Miau! o ¡Vamos a arañar ese score alto!).";
+
+        // Historial simplificado para el chat libre
+        let chatContext = [
+            { role: "system", content: TOFI_SYSTEM_PROMPT }
+        ];
+
+        // Función para renderizar los globos de mensajes
+        function appendMessage(sender, text) {
+            const chatBox = document.getElementById('chat-box');
+            const messageWrapper = document.createElement('div');
+            
+            let formattedText = text;
+            if (sender === 'tofi') {
+                // 1. Convierte los **texto** (negritas) a etiquetas HTML <b>
+                formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                
+                // 2. Convierte los *texto* (cursivas) a etiquetas HTML <i>
+                formattedText = formattedText.replace(/\*(.*?)\*/g, '<i>$1</i>');
+                
+                // 3. Convierte los * al inicio de una línea (listas) en un puntito limpio •
+                formattedText = formattedText.replace(/^\*\s+/gm, '• ');
+            }
+            
+            if (sender === 'user') {
+                messageWrapper.className = "flex items-start gap-3 max-w-[85%] ml-auto flex-row-reverse";
+                messageWrapper.innerHTML = `
+                    <div class="w-9 h-9 flex-shrink-0 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                        Tú
+                    </div>
+                    <div class="bg-indigo-600 text-white rounded-2xl rounded-tr-none p-3.5 shadow-sm text-sm leading-relaxed">
+                        <p>${formattedText}</p>
+                    </div>
+                `;
+            } else if (sender === 'tofi') {
+                messageWrapper.className = "flex items-start gap-3 max-w-[85%]";
+                messageWrapper.innerHTML = `
+                    <div class="w-9 h-9 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center overflow-hidden p-0.5 shadow-sm">
+                        <img src="ISOTIPO toefl_Mesa de trabajo real.png" alt="Tofi" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-white border border-gray-100 rounded-2xl rounded-tl-none p-3.5 shadow-sm text-sm leading-relaxed text-gray-800">
+                        <div>${formattedText.replace(/\n/g, '<br>')}</div>
+                    </div>
+                `;
+            } else if (sender === 'loading') {
+                messageWrapper.id = "tofi-loading";
+                messageWrapper.className = "flex items-start gap-3 max-w-[85%]";
+                messageWrapper.innerHTML = `
+                    <div class="w-9 h-9 flex-shrink-0 bg-white border border-gray-200 rounded-lg flex items-center justify-center overflow-hidden p-0.5 shadow-sm">
+                        <img src="ISOTIPO toefl_Mesa de trabajo real.png" alt="Tofi" class="w-full h-full object-contain">
+                    </div>
+                    <div class="bg-gray-100 rounded-2xl rounded-tl-none p-3.5 text-sm text-gray-400 flex items-center gap-1.5 font-medium">
+                        Tofi está pensando<span class="animate-bounce">.</span><span class="animate-bounce [animation-delay:0.2s]">.</span><span class="animate-bounce [animation-delay:0.4s]">.</span>
+                    </div>
+                `;
+            }
+
+            chatBox.appendChild(messageWrapper);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+        }
+
+            // Función para procesar el envío del mensaje a la API pública de desarrollo
+            async function handleSendMessage(event) {
+            event.preventDefault();
+            const inputField = document.getElementById('user-input');
+            const messageText = inputField.value.trim();
+            
+            if (!messageText) return;
+
+            // 1. Mostrar mensaje del usuario
+            appendMessage('user', messageText);
+            inputField.value = "";
+
+            // 2. Mostrar animación de carga (Tofi pensando)
+            appendMessage('loading', '');
+
+            // Simular el retraso de procesamiento de la IA
+            setTimeout(() => {
+                const loader = document.getElementById('tofi-loading');
+                if (loader) loader.remove();
+
+                // 3. Respuestas amplias y totalmente en inglés
+                const textoMin = messageText.toLowerCase();
+                let tofiReply = "";
+
+                if (textoMin.includes("hola") || textoMin.includes("hello") || textoMin.includes("hi")) {
+                    tofiReply = "🐾 **Hello there! Meow!** I am thrilled to help you prepare for your TOEFL ITP exam today. We can focus on any section you find challenging: *Listening Comprehension*, *Structure & Written Expression*, or *Reading Comprehension*.<br><br>To get started, just let me know which area you want to practice, or drop a specific grammar rule you would like me to explain in depth. Let's claw our way to a high score! 🐾";
+                } 
+                else if (textoMin.includes("structure") || textoMin.includes("grammar") || textoMin.includes("exercise") || textoMin.includes("class")) {
+                    tofiReply = "Meow! Let's dive deep into the **Structure & Written Expression** section. This part of the test thoroughly evaluates your understanding of formal standard English. A major trap for students is **Sentence Structure**, specifically missing subjects, verbs, or connectors.<br><br>💡 **Key Concept: Subject-Verb Agreement & Inversion**<br>In advanced TOEFL structures, when a sentence begins with a negative expression (such as *Rarely*, *Seldom*, or *Never*), the subject and the verb must invert!<br><br>*   ❌ *Incorrect:* Rarely **she has missed** a TOEFL preparation class.<br>*   ✅ *Correct:* Rarely **has she missed** a TOEFL preparation class.<br><br>📝 **Mini-Exercise for You:**<br>Try to complete this sentence in your mind: *'Not until the sun went down ___________ to study.'*<br>A) she started<br>B) did she start<br>C) she did start<br><br>*(Hint: Look for the inverted auxiliary verb!).* What do you think the correct answer is? 🐾";
+                } 
+                else if (textoMin.includes("listening") || textoMin.includes("audio")) {
+                    tofiReply = "🐾 **Purr-fect! Let's analyze the Listening Comprehension section.**<br><br>The short dialogues (Part A) can be tricky, but Tofi has an excellent strategy for you. In most cases, the **second speaker** holds the key to the correct answer. The test design relies heavily on **synonyms and structures of understatement or negation**.<br><br>Let's look at a realistic TOEFL scenario:<br>*   **Man:** *Are you finished with the lab report for chemistry class?*<br>*   **Woman:** *Hardly! I still have to write the entire conclusion section.*<br><br>🔍 **Tofi's Expert Analysis:**<br>The word *'Hardly'* means almost negative. Therefore, the correct multiple-choice answer on your test will look something like: **'She has not completed the assignment yet.'** <br><br>Always avoid choosing options that repeat the exact same words from the audio; instead, look for the option that changes the words but keeps the exact same meaning. Do you want another listening tip? Meow!";
+                } 
+                else if (textoMin.includes("reading") || textoMin.includes("text")) {
+                    tofiReply = "Meow! The **Reading Comprehension** section is a race against the clock. You have 50 questions to answer in 55 minutes, meaning you have just over one minute per question! Managing your time efficiently is vital.<br><br>📈 **Tofi's Ultimate Reading Strategy:**<br>1. **Do NOT read the whole passage first:** This is a huge time-waster. Go straight to the first question.<br>2. **Identify the Keyword:** Look for names, dates, or technical terms in the question stem.<br>3. **Scan the Text:** Run your eyes quickly through the paragraphs until you spot that keyword. Read only the surrounding 2 or 3 sentences to extract the answer.<br><br>This technique works perfectly for *Vocabulary-in-Context* questions and *Direct Details*. Would you like me to show you an example of how to handle *Inference* questions? 🐾";
+                } 
+                else {
+                    // Respuesta genérica amplia en inglés
+                    tofiReply = `Meow! That is a highly relevant point regarding your preparation. In the TOEFL ITP, mastery of academic structures is what sets high-scoring students apart. 
+                    <br><br>Keep in mind that consistency in **Parallel Structure** is highly tested. Whenever you see a list connected by coordinates like *and*, *but*, or *or*, all elements must share the exact same grammatical form.
+                    <br><br>For instance: 
+                    <br>*   ✅ *Correct:* Studying for the TOEFL requires time, patience, and **dedication** (Noun, Noun, and Noun).
+                    <br>*   ❌ *Incorrect:* Studying for the TOEFL requires time, patience, and **to be dedicated**.
+                    <br><br>You are doing an incredible job practicing! What specific topic or question structure should we tackle next? 🐾`;
+                }
+
+                // 4. Imprimir la respuesta amplia en el chat
+                appendMessage('tofi', tofiReply);
+
+            }, 1500);
+        }
+    </script>
+    </body>
+</html>
