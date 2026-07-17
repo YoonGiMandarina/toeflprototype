@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL Trainer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<!-- El body ocupa toda la pantalla, tiene un degradado suave y detecta el clic en cualquier lugar -->
+<body onclick="goToLogin()" class="bg-gradient-to-b from-[#f3f0ff] to-[#e0dbff] min-h-screen flex flex-col justify-between items-center relative overflow-hidden cursor-pointer select-none">
+
+    <!-- Espaciador superior para centrar el logo -->
+    <div class="flex-1 flex items-center justify-center w-full px-6">
+        
+        <!-- Contenedor del Logo con una animación sutil de entrada -->
+        <div class="text-center transition-all duration-500 transform hover:scale-105">
+            <img src="LOGO TOEFL.png" alt="TOEFL Trainer Logo" class="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto drop-shadow-sm" onerror="this.src='tofi_saludando.png'">
+        </div>
+
+    </div>
+
+    <!-- ONDAS INFERIORES DE DECORACIÓN -->
+    <div class="w-full relative leading-[0] pointer-events-none">
+        <svg class="relative block w-full h-[80px] md:h-[120px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M985.66,92.83C1051.8,93.44,1116.3,81.9,1200,58.65V120H0V0c28.62,11.2,74.12,27.18,142.61,43.43,101.44,24.07,243.6,40.1,387.16,42A1231.22,1231.22,0,0,0,985.66,92.83Z" fill="#c7bfff" opacity="0.4"></path>
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,1200,110V120H0V60C118.89,64.91,222.14,64.88,321.39,56.44Z" fill="#b3a7ff" opacity="0.6"></path>
+        </svg>
+    </div>
+
+    <!-- Indicador visual discreto en la parte inferior -->
+    <div class="absolute bottom-4 text-center w-full">
+        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase animate-pulse">Tap anywhere to start</p>
+    </div>
+
+    <!-- LÓGICA DE REDIRECCIÓN -->
+    <script>
+        function goToLogin() {
+            // Te manda directo a la pantalla de login
+            window.location.href = 'logintest.html';
+        }
+    </script>
+</body>
+</html>

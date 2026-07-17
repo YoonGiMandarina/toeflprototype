@@ -45,16 +45,20 @@
 
             <div id="test-screen" class="hidden">
                 <div class="mb-4">
-                    <span id="section-badge" class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded tracking-wide">Section</span>
+                    <!-- Fila superior de la pregunta: Sección y Contador -->
+                    <div class="flex justify-between items-center mb-4">
+                        <span id="section-badge" class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded tracking-wide">Section</span>
+                        <span id="question-counter" class="text-xs text-gray-500 font-semibold tracking-wide">Question -- of --</span>
+                    </div>
 
                     <div id="audio-container" class="hidden mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl">
                         <p class="text-xs font-bold text-slate-500 mb-1 flex items-center gap-1">🎧 Listen to the audio file:</p>
                         <audio id="audio-player" controls class="w-full"></audio>
                     </div>
 
-                    <div id="passage-container" class="hidden mt-4 p-4 bg-amber-50/50 border border-amber-200 rounded-xl max-h-48 overflow-y-auto text-sm text-gray-700 leading-relaxed shadow-inner">
-                        <p class="font-bold text-amber-900 mb-1 text-xs uppercase tracking-wider">Reading Passage:</p>
-                        <p id="passage-text"></p>
+                    <div id="passage-container" class="hidden mt-4 p-4 bg-white border border-gray-200 rounded-xl max-h-64 overflow-y-auto text-sm text-gray-700 shadow-inner">
+                        <p class="font-bold text-indigo-600 mb-3 text-xs uppercase tracking-wider">Reading Passage</p>
+                        <div id="passage-text" class="flex flex-col gap-1.5 font-sans"></div>
                     </div>
 
                     <p id="question-text" class="text-lg font-medium text-gray-900 mt-4 leading-snug">Here is the question</p>
@@ -66,8 +70,9 @@
                     Check Answer
                 </button>
 
-                <div id="feedback-container" class="hidden mt-6 mb-2 border rounded-xl p-4 flex items-start gap-4 transition-all duration-300">
-                     <div id="feedback-text" class="font-medium text-sm leading-tight text-gray-800 w-full"></div>
+                <!-- Nuevo contenedor de feedback flexible y con scroll autoadaptable -->
+                <div id="feedback-container" class="hidden mt-6 mb-2 border rounded-xl p-4 flex items-start gap-4 transition-all duration-300 max-h-48 overflow-y-auto">
+                    <div id="feedback-text" class="font-medium text-sm leading-relaxed text-gray-800 w-full"></div>
                 </div>
             </div>
 
@@ -122,23 +127,15 @@
                 question: "(Man) My watch stopped again. (Woman) You should get a new battery. (Narrator) What does the woman suggest?",
                 options: ["Buying a completely new watch.", "Replacing the battery in the watch.", "Stopping by the watch repair shop.", "Keeping track of the time yourself."],
                 answer: 1,
-                explanation: "The correct answer is A. were. The time expression 'In the past' requires the simple past tense, and the plural subject 'lions' takes the past form were. The other options (once, when, and only) cannot complete the sentence because they are not verbs. When answering TOEFL ITP questions, use time expressions and subject-verb agreement to identify the correct verb form."
+                explanation: "The woman suggests replacing the battery since she says 'You should get a new battery'."
             },
             {
                 section: "listening",
-                audio: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", 
+                audio: "https://ia601905.us.archive.org/8/items/listeningsamplereal/listeningsamplereal.mp3", 
                 question: "(Woman) Are you ready for the seminar? (Man) I haven't even opened the book. (Narrator) What does the man mean?",
                 options: ["He is fully prepared.", "He hasn't started studying yet.", "He forgot his book at home.", "The seminar was cancelled."],
                 answer: 1,
-                explanation: "By saying he hasn't even opened the book, the man indicates he hasn't started studying."
-            },
-            {
-                section: "listening",
-                audio: "https://ia601503.us.archive.org/18/items/full-toefl-listening-itp-pbt-with-answer-untuk-tes-lpdp-cpns-kelulusan-universitas-bag-2-1/Full%20TOEFL%20listening%20ITP%20%20PBT%20with%20answer%20untuk%20tes%20LPDP%2C%20CPNS%2C%20kelulusan%20universitas%20%20bag%20%202%20%281%29.mp3", 
-                question: "What does this mean?",
-                options: ["I don't know.", "He hasn't written.", "She hasn't written yet.", "The exam is over."],
-                answer: 2,
-                explanation: "By saying he hasn't even opened the book, the man indicates he hasn't started studying."
+                explanation: "By saying he hasn't even opened the book, the man indicates he hasn't started studying. By saying he hasn't even opened the book, the man indicates he hasn't started studying. By saying he hasn't even opened the book, the man indicates he hasn't started studying. By saying he hasn't even opened the book, the man indicates he hasn't started studying. By saying he hasn't even opened the book, the man indicates he hasn't started studying. By saying he hasn't even opened the book, the man indicates he hasn't started studying. The conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, theirThe conservatism of the early English colonists in North America, their"
             },
             {
                 section: "structure",
@@ -156,27 +153,77 @@
             },
             {
                 section: "reading",
-                passage: "Photosynthesis is the process used by plants to convert light energy into chemical energy...",
-                question: "According to paragraph 1, what is the primary cause of photosynthesis?",
-                options: ["Decline in moisture.", "Absorption of solar energy by chlorophyll.", "An increase in CO2.", "Fluctuations in temperature."],
-                answer: 1,
-                explanation: "The text states that photosynthesis begins directly with the absorption of solar light energy by chlorophyll."
+                passage: [
+                    "The conservatism of the early English colonists in North America, their", 
+                    "strong attachment to the English way of doing things, would play a", 
+                    "major part in the furniture that was made in New England. The very", 
+                    "tools that the first New England furniture makers used were, after", 
+                    "all, not much different from those used for centuries  even", 
+                    "millennia: basic hammers, saws, chisels, planes, augers, compasses." 
+                ],
+                question: "The phrase “attachment to” in line 2 is closest in meaning to",
+                options: ["Control of", "Distance from", "Curiosity about", "Preference for"],
+                answer: 3,
+                explanation: "In this context, 'attachment to' means a strong preference for or dedication to their traditional ways."
             },
             {
                 section: "reading",
-                passage: "The Great Depression was a severe worldwide economic depression that took place mostly during the 1930s...",
-                question: "In what decade did the Great Depression primarily occur?",
-                options: ["1910s", "1920s", "1930s", "1940s"],
-                answer: 2,
-                explanation: "The fragment explicitly clarifies that it developed mostly throughout the 1930s (1930s)."
+                passage: [
+                    "A new atomic clock being developed for navigation", 
+                    "satellites will perform better than previous devices. The", 
+                    "clock will use a new microwave cavity design to", 
+                    "provide a compact and lightweight package and new", 
+                    "electronic techniques to maintain long-term stability." 
+                ],
+                question: "In line 5, the word 'stability' is closest in meaning to...",
+                options: ["strength", "constancy", "structure", "popularity"],
+                answer: 1,
+                explanation: "In this context, stability refers to the clock's long-term constancy."
+            },
+            {
+                section: "reading",
+                passage: [
+                    "The conservatism of the early English colonists in North America, their", // Línea 1
+                    "strong attachment to the English way of doing things, would play a major", // Línea 2
+                    "part in the furniture that was made in New England. The very tools that the", // Línea 3
+                    "first New England furniture makers used were, after all, not much different", // Línea 4
+                    "from those used for centuries  even millennia: basic hammers, saws,", // Línea 5
+                    "chisels, planes, augers, compasses, and measures. These were the tools",
+                    "used more or less by all people who worked with wood: carpenters, barrel",
+                    "makers, and shipwrights. At most the furniture makers might have had",
+                    "planes with special edges or more delicate chisels, but there could not",
+                    "have been much specialization in the early years of the colonies. The",
+                    "furniture makers in those early decades of the 1600’s were known as",
+                    "“joiners,” for the primary method of constructing furniture, at least among",
+                    "the English of this time, was that of mortise-and-tenon joinery. The mortise",
+                    "is the hole chiseled and cut into one piece of wood, while the tenon is the",
+                    "tongue or protruding element shaped from another piece of wood so that it",
+                    "fits into the mortise; and another small hole is then drilled (with the auger)",
+                    "through the mortised end and the tenon so that a whittled peg can secure",
+                    "the joint  thus the term “joiner.” Panels were fitted into slots on the basic",
+                    "frames. This kind of construction was used for making everything from",
+                    "houses to chests. Relatively little hardware was used during this period.",
+                    "Some nails  forged by hand  were used, but no screws or glue. Hinges",
+                    "were often made of leather, but metal hinges were also used. The cruder",
+                    "varieties were made by blacksmiths in the colonies, but the finer metal",
+                    "elements were imported. Locks and escutcheon plates  the latter to shield",
+                    "the wood from the metal key  would often be imported. Above all, what the",
+                    "early English colonists imported was their knowledge of, familiarity with,",
+                    "and dedication to the traditional types and designs of furniture they knew",
+                    "in England."
+                ],
+                question: "The phrase “attachment to” in line 2 is closest in meaning to",
+                options: ["Control of", "Distance from", "Curiosity about", "Preference for"],
+                answer: 3,
+                explanation: "In this context, 'attachment to' means a strong preference for or dedication to their traditional ways."
             }
         ];
 
         const sectionInfo = {
-            listening: { title: "Listening Comprehension", text: "Measures your ability to understand formal English conversations. This section consists of a maximum of 50 random items.", strategy: "Focus on the second line of dialogue from each speaker." },
-            structure: { title: "Structure & Written Expression", text: "Measures your command of grammar and formal written expression. This section consists of a maximum of 40 random items.", strategy: "First, locate the Subject and the main Verb of the sentence." },
-            reading: { title: "Reading Comprehension", text: "Measures your ability to understand academic texts. This section consists of a maximum of 50 random items.", strategy: "Perform a quick scan (scanning) to find the key word." },
-            full: { title: "TOEFL ITP Full Test Simulator", text: "You will start the full test with official time limits by section and without immediate feedback. The test consists of up to 140 randomly selected items.", strategy: "Strict times: Listening (35 min/50 items), Structure (25 min/40 items) and Reading (55 min/50 items)." }
+            listening: { title: "Listening Comprehension", text: "Measures your ability to understand formal English conversations. This section consists of a maximum of 2 random items.", strategy: "Focus on the second line of dialogue from each speaker." },
+            structure: { title: "Structure & Written Expression", text: "Measures your command of grammar and formal written expression. This section consists of a maximum of 2 random items.", strategy: "First, locate the Subject and the main Verb of the sentence." },
+            reading: { title: "Reading Comprehension", text: "Measures your ability to understand academic texts. This section consists of a maximum of 2 random items.", strategy: "Perform a quick scan (scanning) to find the key word." },
+            full: { title: "TOEFL ITP Full Test Simulator", text: "You will start the full test with official time limits by section and without immediate feedback. The test consists of up to 6 randomly selected items.", strategy: "Strict times apply per section." }
         };
 
         let filteredQuestions = [];
@@ -222,11 +269,24 @@
                 sectionTotals[currentSection] = filteredQuestions.length;
             }
 
-            const info = sectionInfo[currentSection] || sectionInfo['full'];
+            prepareInstructionsScreen();
+        };
+
+        function prepareInstructionsScreen() {
+            let activeSection = currentSection;
+            if (currentSection === 'full') {
+                const currentQuestion = filteredQuestions[currentQuestionIndex];
+                activeSection = currentQuestion ? currentQuestion.section : 'listening';
+            }
+
+            const info = sectionInfo[activeSection] || sectionInfo['full'];
             document.getElementById('inst-title').innerText = info.title;
             document.getElementById('inst-text').innerText = info.text;
             document.getElementById('inst-strategy').innerText = info.strategy;
-        };
+
+            document.getElementById('instructions-screen').classList.remove('hidden');
+            document.getElementById('test-screen').classList.add('hidden');
+        }
 
         function startTest() {
             document.getElementById('instructions-screen').classList.add('hidden');
@@ -271,82 +331,131 @@
             while (currentQuestionIndex < filteredQuestions.length && filteredQuestions[currentQuestionIndex].section === currentSecName) {
                 currentQuestionIndex++;
             }
-            showQuestion();
+            
+            if (currentQuestionIndex >= filteredQuestions.length) {
+                endTest();
+            } else {
+                clearInterval(timerInterval);
+                prepareInstructionsScreen();
+            }
         }
 
         function showQuestion() {
-            selectedAnswerIndex = null;
-            isFeedbackState = false;
-            
-            const feedbackContainer = document.getElementById('feedback-container');
-            feedbackContainer.classList.add('hidden');
-            // Eliminar mascota e inyecciones de código del ciclo anterior si existen
-            const oldMascot = feedbackContainer.querySelector('.mascota-wrapper');
-            if (oldMascot) oldMascot.remove();
-
-            const audioPlayer = document.getElementById('audio-player');
-            audioPlayer.pause();
-
             if (currentQuestionIndex >= filteredQuestions.length) {
                 endTest();
                 return;
             }
 
-            const q = filteredQuestions[currentQuestionIndex];
+            const q = filteredQuestions[currentQuestionIndex]; 
 
             if (currentSection === 'full' && lastSectionSeen !== null && lastSectionSeen !== q.section) {
                 clearInterval(timerInterval);
-                lastSectionSeen = q.section;
-                secondsRemaining = SECTION_TIMES[q.section]; 
-                
-                const info = sectionInfo[q.section];
-                document.getElementById('inst-title').innerText = `Next Section: ${info.title}`;
-                document.getElementById('inst-text').innerText = info.text;
-                document.getElementById('inst-strategy').innerText = info.strategy;
-
-                document.getElementById('test-screen').classList.add('hidden');
-                document.getElementById('instructions-screen').classList.remove('hidden');
-                return;
+                prepareInstructionsScreen();
+                return; 
             }
 
-            lastSectionSeen = q.section;
-
-            const actionBtn = document.getElementById('action-btn');
-            actionBtn.innerText = currentSection === 'full' ? "Continue" : "Check Answer";
-            actionBtn.className = "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer text-center";
+            selectedAnswerIndex = null;
+            isFeedbackState = false;
             
-            document.getElementById('section-badge').innerText = `Section: ${q.section.toUpperCase()} | Question ${currentQuestionIndex + 1} of ${filteredQuestions.length}`;
-            document.getElementById('question-text').innerText = q.question;
-
-            const audioContainer = document.getElementById('audio-container');
-            if (q.audio) {
-                audioPlayer.src = q.audio;
-                audioContainer.classList.remove('hidden');
-            } else {
-                audioContainer.classList.add('hidden');
+            // Actualizar la insignia de la sección
+            const badge = document.getElementById('section-badge');
+            if (badge) {
+                badge.innerText = q.section.toUpperCase();
             }
 
+            // ACTUALIZACIÓN DEL CONTADOR DE PREGUNTAS
+            const counter = document.getElementById('question-counter');
+            if (counter) {
+                counter.innerText = `Question ${currentQuestionIndex + 1} of ${filteredQuestions.length}`;
+            }
+
+            // Resetear botón de acción y contenedor de feedback
+            const actionBtn = document.getElementById('action-btn');
+            actionBtn.innerText = "Check Answer";
+            actionBtn.className = "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer text-center";
+            document.getElementById('feedback-container').classList.add('hidden');
+
+            // --- PARTE 1: MOSTRAR / OCULTAR EL PASSAGE ---
             const passageContainer = document.getElementById('passage-container');
+            const passageText = document.getElementById('passage-text');
+
             if (q.passage) {
-                document.getElementById('passage-text').innerText = q.passage;
+                passageText.innerHTML = ""; 
+
+                if (Array.isArray(q.passage)) {
+                    q.passage.forEach((lineContent, index) => {
+                        const lineNumber = index + 1;
+                        let indicator = "";
+
+                        if (lineNumber === 1) {
+                            indicator = "Line";
+                        } else if (lineNumber % 5 === 0) {
+                            indicator = lineNumber;
+                        }
+
+                        const row = document.createElement('div');
+                        row.className = "flex items-start gap-4";
+                        row.innerHTML = `
+                            <div class="w-10 text-right text-xs text-gray-400 font-semibold select-none border-r border-gray-100 pr-2.5 min-h-[1.25rem]">
+                                ${indicator}
+                            </div>
+                            <div class="flex-1 text-gray-800 leading-relaxed font-sans text-sm">
+                                ${lineContent}
+                            </div>
+                        `;
+                        passageText.appendChild(row);
+                    });
+                } else {
+                    passageText.innerText = q.passage;
+                }
                 passageContainer.classList.remove('hidden');
             } else {
                 passageContainer.classList.add('hidden');
             }
 
-            const container = document.getElementById('options-container');
-            container.innerHTML = "";
-            q.options.forEach((option, index) => {
-                const optionBox = document.createElement('div');
-                optionBox.id = `option-${index}`;
-                optionBox.onclick = () => selectOption(index);
-                optionBox.className = "flex items-center gap-3 border-2 border-gray-200 rounded-xl p-3.5 cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition duration-150";
-                optionBox.innerHTML = `
-                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 text-gray-500 font-bold text-sm border border-gray-200 uppercase">${String.fromCharCode(65 + index)}</span>
-                    <p class="text-gray-700 font-medium text-sm leading-tight">${option}</p>
-                `;
-                container.appendChild(optionBox);
-            });
+            // --- PARTE 2: PINTAR LA PREGUNTA ---
+            const questionTextElement = document.getElementById('question-text');
+            if (questionTextElement) {
+                questionTextElement.innerText = q.question;
+            }
+
+            // --- PARTE 3: PINTAR LAS OPCIONES DE RESPUESTA ---
+            const optionsContainer = document.getElementById('options-container');
+            if (optionsContainer) {
+                optionsContainer.innerHTML = ""; 
+
+                q.options.forEach((option, index) => {
+                    const button = document.createElement('button');
+                    
+                    button.id = `option-${index}`;
+                    button.className = "w-full flex items-center gap-3 border-2 border-gray-200 rounded-xl p-3.5 cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition duration-150 text-gray-700 font-medium text-sm text-left";
+                    button.innerText = option;
+                    button.onclick = () => selectOption(index); 
+                    
+                    optionsContainer.appendChild(button);
+                });
+            }
+
+            // --- PARTE 4: CONTROLAR EL AUDIO ---
+            const audioContainer = document.getElementById('audio-container');
+            const audioPlayer = document.getElementById('audio-player');
+            
+            if (q.section === 'listening' && q.audio) {
+                if (audioPlayer) {
+                    audioPlayer.src = q.audio;
+                    audioPlayer.load();
+                }
+                if (audioContainer) {
+                    audioContainer.classList.remove('hidden');
+                }
+            } else {
+                if (audioContainer) {
+                    audioContainer.classList.add('hidden');
+                }
+                if (audioPlayer) {
+                    audioPlayer.pause();
+                }
+            }
         }
 
         function selectOption(selectedIndex) {
@@ -357,10 +466,10 @@
             const q = filteredQuestions[currentQuestionIndex];
             q.options.forEach((_, index) => {
                 const box = document.getElementById(`option-${index}`);
-                box.className = "flex items-center gap-3 border-2 border-gray-200 rounded-xl p-3.5 cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition duration-150";
+                box.className = "w-full flex items-center gap-3 border-2 border-gray-200 rounded-xl p-3.5 cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition duration-150 text-gray-700 font-medium text-sm text-left";
             });
 
-            document.getElementById(`option-${selectedIndex}`).className = "flex items-center gap-3 border-2 border-indigo-600 bg-indigo-50/50 rounded-xl p-3.5 cursor-pointer transition duration-150";
+            document.getElementById(`option-${selectedIndex}`).className = "w-full flex items-center gap-3 border-2 border-indigo-600 bg-indigo-50/50 rounded-xl p-3.5 cursor-pointer transition duration-150 text-indigo-900 font-semibold text-sm text-left";
         }
 
         function handleAction() {
@@ -370,12 +479,10 @@
             }
 
             if (currentSection === 'full') {
-                // FLUJO EXAMEN REAL: Evalúa en silencio e incrementa de golpe
                 evaluateAnswerSilently();
                 currentQuestionIndex++;
                 showQuestion();
             } else {
-                // FLUJO DE PRÁCTICA: Requiere dos clics (1. Comprobar / 2. Siguiente Pregunta)
                 if (!isFeedbackState) {
                     checkAnswerPractice();
                 } else {
@@ -401,7 +508,6 @@
             const feedbackText = document.getElementById('feedback-text');
             const actionBtn = document.getElementById('action-btn');
 
-            // Bloquear otras selecciones
             q.options.forEach((_, index) => {
                 const box = document.getElementById(`option-${index}`);
                 box.onclick = null;
@@ -411,23 +517,42 @@
 
             feedbackContainer.classList.remove('hidden');
 
-            if (selectedAnswerIndex === q.answer) {
+            // 1. Determinar el estado (correct/incorrect) para cambiar colores y textos
+            const isCorrect = selectedAnswerIndex === q.answer;
+            const statusKey = isCorrect ? 'correct' : 'incorrect';
+
+            if (isCorrect) {
                 score++;
-                document.getElementById(`option-${selectedAnswerIndex}`).className = "flex items-center gap-3 border-2 border-emerald-500 bg-emerald-50 rounded-xl p-3.5 transition duration-150";
+                document.getElementById(`option-${selectedAnswerIndex}`).className = "w-full flex items-center gap-3 border-2 border-emerald-500 bg-emerald-50 rounded-xl p-3.5 transition duration-150 text-emerald-900 font-semibold text-sm text-left";
                 feedbackText.innerHTML = `<span class="text-xs text-emerald-600 font-bold uppercase tracking-wider">🎯 Correct!</span><br><span class="text-gray-600 text-xs mt-1 block">${q.explanation}</span>`;
                 feedbackContainer.className = "mt-6 mb-2 border border-emerald-100 bg-emerald-50 rounded-xl p-4 flex items-center gap-4 transition-all duration-300";
             } else {
-                document.getElementById(`option-${selectedAnswerIndex}`).className = "flex items-center gap-3 border-2 border-rose-500 bg-rose-50 rounded-xl p-3.5 transition duration-150";
-                document.getElementById(`option-${q.answer}`).className = "flex items-center gap-3 border-2 border-emerald-400 bg-emerald-50/40 rounded-xl p-3.5 transition duration-150";
+                document.getElementById(`option-${selectedAnswerIndex}`).className = "w-full flex items-center gap-3 border-2 border-rose-500 bg-rose-50 rounded-xl p-3.5 transition duration-150 text-rose-900 font-semibold text-sm text-left";
+                document.getElementById(`option-${q.answer}`).className = "w-full flex items-center gap-3 border-2 border-emerald-400 bg-emerald-50/40 rounded-xl p-3.5 transition duration-150 text-emerald-900 font-semibold text-sm text-left";
                 
                 feedbackText.innerHTML = `<span class="text-xs text-rose-600 font-bold uppercase tracking-wider">❌ Incorrect!</span><br><span class="text-gray-600 text-xs mt-1 block">${q.explanation}</span>`;
                 feedbackContainer.className = "mt-6 mb-2 border border-rose-100 bg-rose-50 rounded-xl p-4 flex items-center gap-4 transition-all duration-300";
             }
 
-            // Inyectar la Mascota del Archivo Local al inicio del contenedor
+            // 2. Limpiar la mascota anterior si existe
+            const existingMascot = feedbackContainer.querySelector('.mascota-wrapper');
+            if (existingMascot) existingMascot.remove();
+
+            // 3. SELECCIÓN DINÁMICA DE LA IMAGEN DE TOFI (Adaptada a tus nombres de archivo)
+            let seccionEspañol = q.section; // Por defecto
+            if (q.section === 'listening') seccionEspañol = 'listening';
+            if (q.section === 'structure') seccionEspañol = 'grammar';
+            if (q.section === 'reading') seccionEspañol = 'reading';
+
+            const resultadoEspañol = isCorrect ? 'correcto' : 'incorrecto';
+
+            // Esto construirá exactamente: "listening TOFI correcto.png", "structure TOFI incorrecto.png", etc.
+            const mascotFilename = `${seccionEspañol} TOFI ${resultadoEspañol}.png`;
+
+            // HTML con la imagen dinámica
             const mascotHTML = `
                 <div class="mascota-wrapper flex-shrink-0 w-16 h-16 flex items-center justify-center overflow-hidden rounded-xl bg-transparent">
-                    <img src="ISOTIPO toefl_Mesa de trabajo real.png" alt="TOEFL Mascot" class="w-full h-full object-contain" />
+                    <img src="${mascotFilename}" alt="Tofi ${q.section} feedback" class="w-full h-full object-contain" onerror="this.src='ISOTIPO toefl_Mesa de trabajo real.png'" />
                 </div>
             `;
             feedbackContainer.insertAdjacentHTML('afterbegin', mascotHTML);
@@ -470,34 +595,19 @@
                 correctAnswers: score,
                 totalQuestions: filteredQuestions.length,
                 date: new Date().toLocaleDateString(),
-                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                time: new Date().toLocaleTimeString()
             };
-
-            if (currentSection === 'full') {
-                newAttempt.breakdown = {
-                    listening: `${sectionScores.listening} / ${sectionTotals.listening}`,
-                    structure: `${sectionScores.structure} / ${sectionTotals.structure}`,
-                    reading: `${sectionScores.reading} / ${sectionTotals.reading}`
-                };
-            }
 
             history.push(newAttempt);
             localStorage.setItem(storageKey, JSON.stringify(history));
 
-            const saveBtn = document.getElementById('save-score-btn');
-            saveBtn.disabled = true;
-            saveBtn.innerText = "✅ Score Saved";
-            saveBtn.classList.add('opacity-50', 'cursor-not-allowed');
             document.getElementById('save-success-msg').classList.remove('hidden');
+            document.getElementById('save-score-btn').disabled = true;
+            document.getElementById('save-score-btn').classList.add('opacity-50', 'cursor-not-allowed');
         }
 
         function confirmExit() {
-            if (currentSection === 'full' || currentQuestionIndex > 0) {
-                const leave = confirm("⚠️ Are you sure you want to leave? Your progress will be lost.");
-                if (leave) {
-                    window.location.href = './dashboardtest.html';
-                }
-            } else {
+            if (confirm("Are you sure you want to exit? Your progress in this session will be lost.")) {
                 window.location.href = './dashboardtest.html';
             }
         }

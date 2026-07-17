@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons - Learn with Tofi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 min-h-screen flex flex-col pb-28">
+
+    <header class="max-w-2xl w-full mx-auto px-5 pt-6">
+        <button onclick="window.history.back()" class="text-gray-500 hover:text-indigo-600 transition p-1 rounded-lg hover:bg-gray-100 flex items-center justify-center w-8 h-8 mb-4 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+        </button>
+
+        <div class="flex items-start gap-4">
+            <div id="mod-icon" class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-gray-100 flex-shrink-0">📚</div>
+            <div>
+                <h1 id="mod-title" class="text-2xl font-bold text-slate-900">Vocabulary Skills</h1>
+                <p id="mod-desc" class="text-gray-500 text-sm mt-1 font-medium">Learn how to understand the meaning of words in different ways.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-2xl w-full mx-auto px-5 mt-8 flex-1">
+        <h2 class="text-base font-bold text-slate-900 mb-4 tracking-wide">Lessons</h2>
+        <div id="lessons-container" class="space-y-3"></div>
+
+        <!-- Banner animado inferior de Tofi -->
+        <div class="mt-8 bg-indigo-50/50 border border-indigo-100/50 rounded-2xl p-4 flex items-center justify-between gap-4">
+            <p class="text-indigo-950 text-sm font-semibold leading-relaxed">Keep practicing and you'll get better every day!</p>
+            <img src="Base TOFI Correcto.png" alt="Tofi" class="w-16 h-16 object-contain" onerror="this.src='ISOTIPO toefl_Mesa de trabajo real.png'">
+        </div>
+    </main>
+
+    <!-- Barra de Navegación Inferior Estándar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50">
+        <div class="max-w-2xl mx-auto flex justify-around items-center py-2.5 px-2">
+            <button onclick="location.href='dashboardtest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">🏠<span class="mt-1">Home</span></button>
+            <button onclick="location.href='indextest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">📝<span class="mt-1">Practice</span></button>
+            <button onclick="location.href='learntest.html'" class="flex flex-col items-center gap-1 text-indigo-600 flex-1 text-[11px] font-semibold cursor-pointer">📖<span class="mt-1">Learn</span></button>
+            <button onclick="location.href='tutortest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">💬<span class="mt-1">Chat</span></button>
+            <button onclick="location.href='profiletest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">👤<span class="mt-1">Profile</span></button>
+        </div>
+    </div>
+
+    <script>
+        // Banco manual de lecciones para simular la carga dinámica
+            const LESSONS_DATABASE = {
+
+    // =========================================================================
+    // 📖 SECCIÓN: READING
+    // =========================================================================
+    
+    // Módulo 4 de Reading (Vocabulary Skills)
+            "reading-4": {
+                title: "Vocabulary Skills",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Finding Meaning from Context",
+                        skillText: "Context clues help you understand the meaning of a word...",
+                        strategyText: "Read the sentence carefully and look at the words before and after...",
+                        exampleSentence: "The scientist was <span class='text-indigo-600 font-bold underline'>meticulous</span>...",
+                        exampleQuestion: "What does meticulous mean?",
+                        options: ["very noisy", "very careful", "very confused", "very lazy"],
+                        correctAnswer: 1,
+                        detailedFeedback: "'Meticulous' means showing great attention to detail..."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Using Structural Clues",
+                        skillText: "Structural clues involve looking at punctuation like dashes...",
+                        strategyText: "Look for punctuation marks like commas or dashes...",
+                        exampleSentence: "The behavior was <span class='text-indigo-600 font-bold underline'>atypical</span>—that is, not normal...",
+                        exampleQuestion: "What does atypical mean?",
+                        options: ["common", "unusual or not normal", "aggressive", "intelligent"],
+                        correctAnswer: 1,
+                        detailedFeedback: "The text explicitly states '—that is, not normal—'..."
+                    }
+                ]
+            },
+
+            // =========================================================================
+            // 🎧 SECCIÓN: LISTENING
+            // =========================================================================
+            
+            // Módulo 1 de Listening (Main Idea Questions)
+            "listening-1": {
+                title: "Main Idea Questions",
+                desc: "Identify the primary topic or purpose of the audio classroom discussions.",
+                icon: "🎯",
+                items: [
+                    {
+                        id: 1,
+                        name: "Understanding the Purpose",
+                        skillText: "Purpose questions ask you why a speaker is initiating a conversation.",
+                        strategyText: "Listen carefully to the very beginning of the conversation...",
+                        exampleSentence: "Hi Professor, I was wondering if I could ask you a few questions about the assignment...",
+                        exampleQuestion: "Why does the student go to see the professor?",
+                        options: ["To hand in a late assignment", "To ask for clarification on an assignment", "To complain about a grade", "To discuss a research topic"],
+                        correctAnswer: 1,
+                        detailedFeedback: "The student explicitly says 'ask you a few questions about the upcoming assignment guidelines'..."
+                    }
+                ]
+            },
+
+            // =========================================================================
+            // ✏️ SECCIÓN: STRUCTURE & WRITTEN EXPRESSION
+            // =========================================================================
+            
+            // Módulo 1 de Structure (Sentences with One Clause)
+            "structure-1": {
+                title: "Sentences with One Clause",
+                desc: "Master the fundamental rules for subjects and verbs in simple sentences.",
+                icon: "📝",
+                items: [
+                    {
+                        id: 1,
+                        name: "Subject and Verb Agreement",
+                        skillText: "A sentence in English must have at least one subject and one verb.",
+                        strategyText: "Always locate the verb first, then verify if it has a matching subject.",
+                        exampleSentence: "The North Pole ________ a vast sheet of ice floating on the Arctic Ocean.",
+                        exampleQuestion: "Choose the correct option to complete the sentence:",
+                        options: ["it is", "is", "being", "which is"],
+                        correctAnswer: 1, // "is"
+                        detailedFeedback: "The sentence already has a subject ('The North Pole') but lacks a main verb. Option B correctly supplies the verb 'is' without repeating the subject."
+                    }
+                ]
+            }
+
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const section = params.get('section') || 'reading';
+            const moduleId = params.get('moduleId') || '4';
+            const key = `${section}-${moduleId}`;
+
+            // Si no existen datos guardados para esa combinación, usamos una maqueta por defecto
+            const data = LESSONS_DATABASE[key] || {
+                title: `Module ${moduleId}`, desc: `Lessons for ${section} skills.`, icon: "📚",
+                items: [{ id: 1, name: "Lesson 1: Introduction Strategy" }, { id: 2, name: "Lesson 2: Core Concept Drill" }]
+            };
+
+            document.getElementById("mod-title").innerText = data.title;
+            document.getElementById("mod-desc").innerText = data.desc;
+            document.getElementById("mod-icon").innerText = data.icon;
+
+            const container = document.getElementById("lessons-container");
+            data.items.forEach((lesson, index) => {
+                container.innerHTML += `
+                    <button onclick="goToLesson('${section}', '${moduleId}', ${lesson.id}, ${data.items.length}, ${index})" class="w-full bg-white border border-gray-100 rounded-2xl p-4 flex items-center gap-4 text-left shadow-sm hover:shadow-md hover:border-indigo-100 transition duration-200 cursor-pointer group">
+                        <div class="w-10 h-10 bg-indigo-600 text-white font-bold rounded-full flex items-center justify-center text-sm flex-shrink-0">
+                            ${lesson.id}
+                        </div>
+                        <div class="flex-1 font-bold text-slate-800 text-sm group-hover:text-indigo-600 transition-colors">
+                            ${lesson.name}
+                        </div>
+                        <div class="text-gray-400 group-hover:text-indigo-600 transition-colors px-1 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </div>
+                    </button>
+                `;
+            });
+        });
+
+        function goToLesson(section, modId, lessonId, total, lessonIndex) {
+            const key = `${section}-${modId}`;
+            let targetLessonData = null;
+
+            // Verificamos de forma segura si la clave existe en tu base de datos
+            if (LESSONS_DATABASE[key] && LESSONS_DATABASE[key].items && LESSONS_DATABASE[key].items[lessonIndex]) {
+                // Si existe, extraemos tus datos reales escritos a mano
+                targetLessonData = LESSONS_DATABASE[key].items[lessonIndex];
+            } else {
+                // Si aún no has escrito este módulo (ej: "reading-1"), creamos una lección de prueba automática
+                const currentData = LESSONS_DATABASE[key] || {};
+                const modTitle = currentData.title || `Module ${modId}`;
+                
+                targetLessonData = {
+                    id: lessonId,
+                    name: lessonIndex === 0 ? "Introduction Strategy" : `Advanced Practice Drill ${lessonId}`,
+                    skillText: `This is a study skill overview for ${modTitle} in the ${section} section.`,
+                    strategyText: "Read the prompt carefully, eliminate obviously wrong options, and look for key indicators.",
+                    exampleSentence: "The candidate's argument was <span class='text-indigo-600 font-bold underline'>lucid</span> and easy for everyone to understand.",
+                    exampleQuestion: "What does the word lucid mean in this context?",
+                    options: ["Confusing", "Clear and easy to understand", "Extremely loud", "Boring"],
+                    correctAnswer: 1, // Opción B
+                    detailedFeedback: "The text provides a direct structural clue right after the word: 'and easy for everyone to understand', which directly describes clarity."
+                };
+            }
+
+            // Guardamos los datos de forma segura en la sesión del navegador
+            sessionStorage.setItem("current_lesson_data", JSON.stringify(targetLessonData));
+            
+            // Redirigimos a la pantalla interactiva
+            window.location.href = `lessonview.html?section=${section}&moduleId=${modId}&lessonId=${lessonId}&total=${total}`;
+        }
+    </script>
+</body>
+</html>

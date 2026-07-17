@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "audioUrl": "https://tuservidor.com/audios/listening_001.mp3",
+    "question": "What does the man imply about the schedule?",
+    "options": [
+      "A) It has been changed indefinitely.",
+      "B) It is identical to last semester's.",
+      "C) The professor will post it tomorrow.",
+      "D) He has not had a chance to look at it yet."
+    ],
+    "correctAnswer": "D"
+  }
+]

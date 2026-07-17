@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Lesson - Learn with Tofi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 min-h-screen flex flex-col pb-28">
+
+    <!-- BARRA SUPERIOR CON PROGRESO -->
+    <header class="max-w-2xl w-full mx-auto px-5 pt-6">
+        <div class="flex items-center justify-between mb-3">
+            <button onclick="window.history.back()" class="text-gray-500 hover:text-indigo-600 transition p-1 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+            </button>
+            <span id="lesson-progress-text" class="text-xs font-bold text-gray-500 uppercase tracking-wider">Lesson 1 of 4</span>
+            <div class="w-6"></div>
+        </div>
+        <!-- Línea de progreso visual superior -->
+        <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden">
+            <div id="progress-bar-fill" class="bg-indigo-600 h-full transition-all duration-300" style="width: 25%"></div>
+        </div>
+    </header>
+
+    <!-- CONTENEDOR MULTI-PANTALLAS INTERACTIVAS -->
+    <main id="view-content" class="max-w-2xl w-full mx-auto px-5 mt-6 flex-1 flex flex-col justify-between">
+        <!-- El contenido se inyecta dinámicamente con JavaScript de acuerdo al paso actual -->
+    </main>
+
+    <!-- BARRA DE NAVEGACIÓN INFERIOR -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50">
+        <div class="max-w-2xl mx-auto flex justify-around items-center py-2.5 px-2">
+            <button onclick="location.href='dashboardtest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium">🏠<span>Home</span></button>
+            <button onclick="location.href='indextest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium">📝<span>Practice</span></button>
+            <button onclick="location.href='learntest.html'" class="flex flex-col items-center gap-1 text-indigo-600 flex-1 text-[11px] font-semibold">📖<span>Learn</span></button>
+            <button onclick="location.href='tutortest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium">💬<span>Chat</span></button>
+            <button onclick="location.href='profiletest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium">👤<span>Profile</span></button>
+        </div>
+    </div>
+
+    <script>
+        // Parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+        const section = params.get('section') || 'reading';
+        const moduleId = params.get('moduleId') || '4';
+        const lessonId = parseInt(params.get('lessonId')) || 1;
+        const totalLessons = parseInt(params.get('total')) || 4;
+
+        // Base de Datos Estática del Contenido Teórico y Ejemplos
+        // Reemplaza el CONTENT_DATABASE fijo por esto:
+        const localData = sessionStorage.getItem("current_lesson_data");
+        const CONTENT_DATABASE = localData ? JSON.parse(localData) : {
+            // Un respaldo por si entran directo sin dar clic
+            title: "Finding Meaning from Context",
+            skillText: "Context clues help you understand...",
+            strategyText: "Read the sentence carefully...",
+            exampleSentence: "The scientist was meticulous...",
+            exampleQuestion: "What does meticulous mean?",
+            options: ["very noisy", "very careful", "very confused", "very lazy"],
+            correctAnswer: 1,
+            detailedFeedback: "'Meticulous' means showing great attention to detail..."
+        };
+
+        let currentStep = 1; // Pasos: 1 = Teoría, 2 = Ejemplo, 3 = Remember, 4 = Fin de la Skill
+
+        function renderStep() {
+            const container = document.getElementById("view-content");
+            const fill = document.getElementById("progress-bar-fill");
+            const progText = document.getElementById("lesson-progress-text");
+
+            // Actualizar el progreso visual superior
+            progText.innerText = `Lesson ${lessonId} of ${totalLessons}`;
+            fill.style.width = `${(currentStep / 4) * 100}%`;
+
+            if (currentStep === 1) {
+                // PANTALLA 5: WHAT IS THIS SKILL?
+                container.innerHTML = `
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between gap-4 mt-2 mb-6">
+                            <h2 class="text-2xl font-black text-slate-900 leading-tight">${CONTENT_DATABASE.title}</h2>
+                            <img src="tofi_saludando.png" class="w-20 h-20 object-contain" onerror="this.src='ISOTIPO toefl_Mesa de trabajo real.png'">
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-sm font-bold text-indigo-950 uppercase tracking-wide flex items-center gap-1.5">🐱 What is this skill?</h3>
+                                <p class="text-gray-600 text-sm mt-2 leading-relaxed font-medium">${CONTENT_DATABASE.skillText}</p>
+                            </div>
+                            <div class="pt-2">
+                                <h3 class="text-sm font-bold text-indigo-950 uppercase tracking-wide flex items-center gap-1.5">💡 Tofi's Strategy</h3>
+                                <p class="text-gray-600 text-sm mt-2 leading-relaxed font-medium">${CONTENT_DATABASE.strategyText}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="nextStep()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md mt-8 transition cursor-pointer text-center">Next ➔</button>
+                `;
+            } 
+            else if (currentStep === 2) {
+                // PANTALLA 6: QUICK EXAMPLE (PREGUNTA SIN SCORE CON FEEDBACK DETALLADO)
+                let optionsHTML = "";
+                CONTENT_DATABASE.options.forEach((opt, idx) => {
+                    optionsHTML += `
+                        <button id="opt-${idx}" onclick="checkExampleAnswer(${idx})" class="w-full text-left bg-white border border-gray-100 hover:border-indigo-100 rounded-xl p-3.5 text-sm font-medium transition cursor-pointer flex items-center gap-3">
+                            <span class="font-bold text-gray-400 text-xs">${String.fromCharCode(65 + idx)}.</span> ${opt}
+                        </button>
+                    `;
+                });
+
+                container.innerHTML = `
+                    <div class="flex-1">
+                        <h3 class="text-sm font-bold text-indigo-950 uppercase tracking-wide flex items-center gap-1.5 mb-3">✨ Quick Example</h3>
+                        <p class="text-gray-500 text-xs font-semibold mb-3">Read the sentence below.</p>
+                        <div class="bg-indigo-50/50 border border-indigo-100 rounded-xl p-4 mb-5 text-sm text-slate-800 leading-relaxed font-medium">
+                            "${CONTENT_DATABASE.exampleSentence}"
+                        </div>
+                        <p class="text-slate-900 font-bold text-sm mb-4">${CONTENT_DATABASE.exampleQuestion}</p>
+                        <div class="space-y-2.5">${optionsHTML}</div>
+                        
+                        <!-- Caja de feedback oculto inicialmente -->
+                        <div id="example-feedback" class="hidden mt-5 p-4 border rounded-xl text-xs leading-relaxed transition-all duration-300"></div>
+                    </div>
+                    <button id="btn-next-step" onclick="nextStep()" class="hidden w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md mt-8 transition cursor-pointer text-center">Next ➔</button>
+                `;
+            } 
+            else if (currentStep === 3) {
+                // PANTALLA 7: REMEMBER
+                container.innerHTML = `
+                    <div class="flex-1">
+                        <h3 class="text-sm font-bold text-indigo-950 uppercase tracking-wide flex items-center gap-1.5 mb-4">🎯 Remember</h3>
+                        <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 flex items-start gap-3 mb-8">
+                            <span class="text-emerald-600 text-lg">✅</span>
+                            <p class="text-emerald-950 text-sm leading-relaxed font-medium">${CONTENT_DATABASE.rememberText}</p>
+                        </div>
+                        <div class="w-full flex justify-center py-4">
+                            <img src="Base TOFI Correcto.png" class="w-40 h-40 object-contain animate-bounce" onerror="this.src='ISOTIPO toefl_Mesa de trabajo real.png'">
+                        </div>
+                    </div>
+                    <button onclick="finishOrNextLesson()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md mt-8 transition cursor-pointer text-center">
+                        ${lessonId < totalLessons ? 'Next Lesson ➔' : 'Complete Skill ➔'}
+                    </button>
+                `;
+            } 
+            else if (currentStep === 4) {
+                // PANTALLA 8: READY TO PRACTICE (FELICITACIONES FINALES)
+                let practiceURL = 'indextest.html'; // Práctica por defecto
+                
+                container.innerHTML = `
+                    <div class="flex-1 flex flex-col items-center text-center mt-4">
+                        <div class="text-4xl mb-3">🎉 🥳 🎉</div>
+                        <img src="tofi_saludando.png" class="w-36 h-36 object-contain mb-4" onerror="this.src='Base TOFI Correcto.png'">
+                        <h2 class="text-2xl font-black text-slate-900">Great job!</h2>
+                        <p class="text-gray-500 text-sm mt-2 font-medium max-w-xs">You're ready to practice this skill.</p>
+                        
+                        <div class="bg-white border border-gray-100 rounded-2xl p-4 w-full mt-6 text-left space-y-3 shadow-sm">
+                            <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Let's apply what you learned:</h4>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700"><span>✅</span> Random TOEFL questions</div>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700"><span>✅</span> Immediate feedback</div>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700"><span>✅</span> Track your progress</div>
+                        </div>
+                    </div>
+                    <div class="space-y-3 w-full mt-8">
+                        <button onclick="location.href='${practiceURL}'" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition cursor-pointer text-center text-sm flex items-center justify-center gap-2">
+                            Go to ${section.charAt(0).toUpperCase() + section.slice(1)} Practice ➔
+                        </button>
+                        <button onclick="location.href='learntest.html'" class="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-bold py-3 px-4 rounded-xl transition cursor-pointer text-center text-sm">
+                            Back to Lessons
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function nextStep() {
+            currentStep++;
+            renderStep();
+        }
+
+        function checkExampleAnswer(selectedIdx) {
+            const correctIdx = CONTENT_DATABASE.correctAnswer;
+            const feedbackBox = document.getElementById("example-feedback");
+            const nextBtn = document.getElementById("btn-next-step");
+
+            // Bloquear clics en las opciones
+            CONTENT_DATABASE.options.forEach((_, idx) => {
+                const btn = document.getElementById(`opt-${idx}`);
+                btn.onclick = null;
+                btn.classList.remove('hover:border-indigo-100', 'cursor-pointer');
+                btn.classList.add('cursor-not-allowed');
+            });
+
+            // Cambiar los textos y estilos dependiendo de si es correcto o incorrecto
+            if (selectedIdx === correctIdx) {
+                // El alumno acertó
+                document.getElementById(`opt-${selectedIdx}`).className = "w-full text-left border-2 border-emerald-500 bg-emerald-50 rounded-xl p-3.5 text-sm font-semibold text-emerald-900";
+                
+                feedbackBox.className = "mt-5 p-4 border border-emerald-100 bg-emerald-50 text-emerald-950 rounded-xl text-xs leading-relaxed font-medium";
+                feedbackBox.innerHTML = `<span class="text-xs text-emerald-600 font-bold uppercase tracking-wider block mb-1">🎯 Correct!</span> ${CONTENT_DATABASE.detailedFeedback}`;
+            } else {
+                // El alumno se equivocó
+                document.getElementById(`opt-${selectedIdx}`).className = "w-full text-left border-2 border-rose-500 bg-rose-50 rounded-xl p-3.5 text-sm font-semibold text-rose-900";
+                document.getElementById(`opt-${correctIdx}`).className = "w-full text-left border-2 border-emerald-500 bg-emerald-50 rounded-xl p-3.5 text-sm font-semibold text-emerald-900";
+                
+                feedbackBox.className = "mt-5 p-4 border border-rose-100 bg-rose-50 text-rose-950 rounded-xl text-xs leading-relaxed font-medium";
+                feedbackBox.innerHTML = `<span class="text-xs text-rose-600 font-bold uppercase tracking-wider block mb-1">❌ Incorrect!</span> ${CONTENT_DATABASE.detailedFeedback}`;
+            }
+
+            // Mostrar la caja de feedback y el botón para continuar
+            feedbackBox.classList.remove("hidden");
+            nextBtn.classList.remove("hidden");
+        }
+
+        function finishOrNextLesson() {
+            if (lessonId < totalLessons) {
+                // Avanza a la siguiente lección numérica incrementando el parámetro
+                window.location.href = `lessonview.html?section=${section}&moduleId=${moduleId}&lessonId=${lessonId + 1}&total=${totalLessons}`;
+            } else {
+                // Si ya fue la última lección, saltamos al paso final de felicitación de la skill
+                currentStep = 4;
+                renderStep();
+            }
+        }
+
+        // Ejecución inicial
+        document.addEventListener("DOMContentLoaded", renderStep);
+    </script>
+</body>
+</html>
