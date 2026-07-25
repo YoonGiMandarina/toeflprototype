@@ -43,29 +43,50 @@
         </div>
     </main>
 
-    <!-- ================= BARRA DE NAVEGACIÓN INFERIOR ================= -->
+        <!-- BARRA DE NAVEGACIÓN INFERIOR MINIMALISTA -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50">
-        <div class="max-w-2xl mx-auto flex justify-around items-center py-2.5 px-2">
-            <button onclick="navigateTo('home')" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 transition-colors duration-150 cursor-pointer flex-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21.75h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21.75h7.5" /></svg>
-                <span class="text-[11px] font-medium">Home</span>
+        <div class="max-w-2xl mx-auto flex justify-around items-center py-2 px-2">
+            
+            <!-- Home -->
+            <button onclick="location.href='dashboardtest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium transition cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                <span>Home</span>
             </button>
-            <button onclick="navigateTo('practice')" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 transition-colors duration-150 cursor-pointer flex-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" /></svg>
-                <span class="text-[11px] font-medium">Practice</span>
+
+            <!-- Practice (ACTIVO) -->
+            <button onclick="location.href='practicetest.html'" class="flex flex-col items-center gap-1 text-indigo-600 flex-1 text-[11px] font-semibold cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                </svg>
+                <span>Practice</span>
             </button>
-            <button onclick="navigateTo('learn')" class="flex flex-col items-center gap-1 text-indigo-600 transition-colors duration-150 cursor-pointer flex-1">
-                <svg xmlns="http://www.w3.org/2000/xl" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c1.026 0 2.004.19 2.903.535a.75.75 0 0 0 1-.707V4.328a.75.75 0 0 0-.5-.707A9.74 9.74 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" /></svg>
-                <span class="text-[11px] font-semibold">Learn</span>
+
+            <!-- Learn -->
+            <button onclick="location.href='learntest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium transition cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" />
+                </svg>
+                <span>Learn</span>
             </button>
-            <button onclick="navigateTo('chat')" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 transition-colors duration-150 cursor-pointer flex-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9c8.25-9-4.97 0-9-3.694-9-8.25 0-4.556 4.03-8.25 9-8.25 4.97 0 9 3.694 9 8.25Z" /></svg>
-                <span class="text-[11px] font-medium">Chat</span>
+
+            <!-- Chat -->
+            <button onclick="location.href='chattest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium transition cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a.75.75 0 0 1-.816-.983 4.5 4.5 0 0 0 .558-2.12c-1.89-1.503-3.076-3.6-3.076-5.867A8.25 8.25 0 0 1 12 3.75c4.97 0 9 3.694 9 8.25Z" />
+                </svg>
+                <span>Chat</span>
             </button>
-            <button onclick="navigateTo('profile')" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 transition-colors duration-150 cursor-pointer flex-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
-                <span class="text-[11px] font-medium">Profile</span>
+
+            <!-- Profile -->
+            <button onclick="location.href='profiletest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium transition cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                <span>Profile</span>
             </button>
+
         </div>
     </div>
 
@@ -79,9 +100,13 @@
                 bgIcon: "bg-indigo-50",
                 description: "Improve your listening skills to understand conversations and academic lectures.",
                 skills: [
-                    { id: 1, name: "1. Main Idea Questions", desc: "Identify the primary topic or purpose of the audio.", icon: "🎯", color: "bg-indigo-50" },
-                    { id: 2, name: "2. Detail Questions", desc: "Listen for specific facts and clearly stated information.", icon: "🔍", color: "bg-amber-50" },
-                    { id: 3, name: "3. Function & Stance", desc: "Understand why a speaker says a specific phrase.", icon: "🗣️", color: "bg-rose-50" }
+                    { id: 1, name: "1. Short Dialogue Basics", desc: "Identify the primary topic or purpose of the audio.", icon: "👁️‍🗨️", color: "bg-indigo-50" },
+                    { id: 2, name: "2. Spotting Key Details", desc: "Listen for specific facts and clearly stated information.", icon: "🔑", color: "bg-amber-50" },
+                    { id: 3, name: "3. Negative Expressions", desc: "Understand why a speaker says a specific phrase.", icon: "🚫", color: "bg-rose-50" },
+                    { id: 4, name: "4. Functions & Tone", desc: "Understand why a speaker says a specific phrase.", icon: "🎭", color: "bg-rose-50" },
+                    { id: 5, name: "5. Contrary Meanings & Idioms", desc: "Analyze and evaluate the information presented.", icon: "📋", color: "bg-emerald-50" },
+                    { id: 6, name: "6. Long Conversations & Talks", desc: "Understand the main ideas and supporting details.", icon: "🗣️", color: "bg-blue-50" },
+                    { id: 7, name: "7. Computer-Based Passages", desc: "Improve clarity and naturalness in spoken English.", icon: "💻", color: "bg-purple-50" }
                 ]
             },
             structure: {
@@ -90,9 +115,13 @@
                 bgIcon: "bg-amber-50",
                 description: "Build strong grammar skills to recognize correct academic written English.",
                 skills: [
-                    { id: 1, name: "1. Subject and Verb Agreement", desc: "Master the most fundamental sentence structure rule.", icon: "📝", color: "bg-amber-50" },
-                    { id: 2, name: "2. Appositives & Participles", desc: "Identify extra information clauses without getting confused.", icon: "💡", color: "bg-indigo-50" },
-                    { id: 3, name: "3. Parallel Structure", desc: "Keep nouns, verbs, and phrases balanced in sentences.", icon: "📐", color: "bg-emerald-50" }
+                    { id: 1, name: "1. Building Solid Sentences", desc: "Master the most fundamental sentence structure rule.", icon: "🧱", color: "bg-amber-50" },
+                    { id: 2, name: "2. Multiple Clauses", desc: "Identify extra information clauses without getting confused.", icon: "🔗", color: "bg-indigo-50" },
+                    { id: 3, name: "3. Inverted Sentences", desc: "Keep nouns, verbs, and phrases balanced in sentences.", icon: "🔄️", color: "bg-emerald-50" },
+                    { id: 4, name: "4. Agreement, Parallel Structure & Comparisons", desc: "Keep nouns, verbs, and phrases balanced in sentences.", icon: "⚖️", color: "bg-rose-50" },
+                    { id: 5, name: "5. Verbs", desc: "Learn how to place modifiers correctly in sentences.", icon: "🏃‍♀️", color: "bg-purple-50" },
+                    { id: 6, name: "6. Nouns & Pronouns", desc: "Learn how to use idioms correctly in sentences.", icon: "🧍‍♀️", color: "bg-blue-50" },
+                    { id: 7, name: "7. Modifiers, Articles & Small Words", desc: "Keep nouns, verbs, and phrases balanced in sentences.", icon: "✏️", color: "bg-emerald-50" }
                 ]
             },
             reading: {
@@ -101,11 +130,11 @@
                 bgIcon: "bg-emerald-50",
                 description: "Learn strategies to understand academic passages and answer questions with confidence.",
                 skills: [
-                    { id: 1, name: "1. Understanding the Passage", desc: "Find the main idea and understand how ideas are organized.", icon: "✏️", color: "bg-amber-50" },
-                    { id: 2, name: "2. Finding Information", desc: "Locate details, unstated information, and references.", icon: "📄", color: "bg-rose-50" },
-                    { id: 3, name: "3. Making Inferences", desc: "Make logical conclusions based on what you read.", icon: "🔮", color: "bg-indigo-50" },
-                    { id: 4, name: "4. Vocabulary Skills", desc: "Learn how to understand words using context and clues.", icon: "🗺️", color: "bg-emerald-50" },
-                    { id: 5, name: "5. Advanced Reading", desc: "Answer questions about tone, purpose, and text structure.", icon: "👑", color: "bg-amber-100" }
+                    { id: 1, name: "1. Understanding the Passage", desc: "Find the main idea and understand how ideas are organized.", icon: "📖", color: "bg-amber-50" },
+                    { id: 2, name: "2. Directly Answered Questions", desc: "Locate details, unstated information, and references.", icon: "🔍", color: "bg-rose-50" },
+                    { id: 3, name: "3. Indirectly Answered Questions", desc: "Make logical conclusions based on what you read.", icon: "🧩", color: "bg-indigo-50" },
+                    { id: 4, name: "4. Vocabulary in Context", desc: "Learn how to understand words using context and clues.", icon: "🎐", color: "bg-emerald-50" },
+                    { id: 5, name: "5. Overall Review Questions", desc: "Answer questions about tone, purpose, and text structure.", icon: "🗺️", color: "bg-amber-100" }
                 ]
             }
         };
@@ -161,7 +190,7 @@
         // Navegación de barra inferior
         function navigateTo(targetSection) {
             if (targetSection === 'home') window.location.href = 'dashboardtest.html';
-            else if (targetSection === 'practice') window.location.href = 'indextest.html';
+            else if (targetSection === 'practice') window.location.href = 'practicetest.html';
             else if (targetSection === 'learn') window.location.href = 'learntest.html';
             else if (targetSection === 'chat') window.location.href = 'tutortest.html';
             else if (targetSection === 'profile') window.location.href = 'profiletest.html';

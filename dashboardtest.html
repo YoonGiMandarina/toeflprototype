@@ -92,42 +92,19 @@
             </button>
         </div>
 
-        <!-- SECCIÓN: PRÁCTICAS POR ÁREA -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            <!-- Tarjeta 1: Listening -->
-            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-xl mb-3">🎧</div>
-                    <h4 class="font-bold text-gray-900 text-base">Listening Practice</h4>
-                    <p class="text-gray-500 text-xs mt-1 mb-4">Directed practice with audio files and immediate feedback.</p>
+                    <!-- TARJETA UNIFICADA DE PRÁCTICA EN EL DASHBOARD -->
+            <div class="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center gap-4 mb-3">
+                    <div class="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-2xl">
+                        ✏️
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-base">TOEFL Practice</h3>
+                        <p class="text-gray-500 text-xs font-medium">Practice Listening, Structure, or Reading with instant feedback.</p>
+                    </div>
                 </div>
-                <button onclick="startMode('listening')" class="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold py-2 rounded-xl text-xs transition cursor-pointer text-center">
-                    Practice Listening
-                </button>
-            </div>
-
-            <!-- Tarjeta 2: Structure -->
-            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-xl mb-3">✍️</div>
-                    <h4 class="font-bold text-gray-900 text-base">Structure Practice</h4>
-                    <p class="text-gray-500 text-xs mt-1 mb-4">Grammar and formal written expression exercises with explanations.</p>
-                </div>
-                <button onclick="startMode('structure')" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold py-2 rounded-xl text-xs transition cursor-pointer text-center">
-                    Practice Structure
-                </button>
-            </div>
-
-            <!-- Tarjeta 3: Reading -->
-            <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
-                <div>
-                    <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-xl mb-3">📖</div>
-                    <h4 class="font-bold text-gray-900 text-base">Reading Practice</h4>
-                    <p class="text-gray-500 text-xs mt-1 mb-4">Directed reading with academic passages and comprehension exercises.</p>
-                </div>
-                <button onclick="startMode('reading')" class="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold py-2 rounded-xl text-xs transition cursor-pointer text-center">
-                    Practice Reading
+                <button onclick="window.location.href='practicetest.html'" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition cursor-pointer text-sm shadow-sm">
+                    Go to Practice ➔
                 </button>
             </div>
 
@@ -224,7 +201,7 @@
             if (targetSection === 'home') {
                 window.location.href = 'dashboardtest.html';
             } else if (targetSection === 'practice') {
-                window.location.href = 'indextest.html'; // Asegúrate de que el nombre coincida exactamente
+                window.location.href = 'practicetest.html'; // Asegúrate de que el nombre coincida exactamente
             } else if (targetSection === 'learn') {
                 window.location.href = 'learntest.html';
             } else if (targetSection === 'chat') {
