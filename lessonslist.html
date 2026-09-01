@@ -53,33 +53,197 @@
     // =========================================================================
     
     // Módulo 4 de Reading (Vocabulary Skills)
-            "reading-4": {
-                title: "Vocabulary Skills",
+            "reading-1": {
+                title: "Understanding the Passage",
                 desc: "Learn how to understand the meaning of words in different ways.",
                 icon: "🗺️",
                 items: [
                     { 
                         id: 1, 
-                        name: "Finding Meaning from Context",
-                        skillText: "Context clues help you understand the meaning of a word...",
-                        strategyText: "Read the sentence carefully and look at the words before and after...",
-                        exampleSentence: "The scientist was <span class='text-indigo-600 font-bold underline'>meticulous</span>...",
-                        exampleQuestion: "What does meticulous mean?",
-                        options: ["very noisy", "very careful", "very confused", "very lazy"],
+                        name: "Finding the Main Idea",
+                        skillText: "Okay, here's the thing about main idea questions — they're not about one tiny detail. They're about the whole point of the passage. If a friend asked 'what was that about?', your one-sentence answer is the main idea.",
+                        strategyText: "Read the first sentence of each paragraph — that's usually where the big idea hides. Then ask yourself, 'What is this passage mostly about?'",
+                        exampleSentence: "Passage: 'Bats are amazing animals. They use echolocation to find food. They sleep upside down. They live in caves.'",
+                        exampleQuestion: "What is the main idea?",
+                        options: [" Bats sleep upside down", "Bats are amazing animals with many interesting traits", "Bats live in caves", "Bats use echolocation"],
                         correctAnswer: 1,
-                        detailedFeedback: "'Meticulous' means showing great attention to detail..."
+                        detailedFeedback: "Don't chase every detail. Find the big picture first. The passage talks about bats and their traits, so the main idea is that bats are amazing animals with many interesting traits."
                     },
                     { 
                         id: 2, 
-                        name: "Using Structural Clues",
-                        skillText: "Structural clues involve looking at punctuation like dashes...",
-                        strategyText: "Look for punctuation marks like commas or dashes...",
-                        exampleSentence: "The behavior was <span class='text-indigo-600 font-bold underline'>atypical</span>—that is, not normal...",
-                        exampleQuestion: "What does atypical mean?",
-                        options: ["common", "unusual or not normal", "aggressive", "intelligent"],
-                        correctAnswer: 1,
-                        detailedFeedback: "The text explicitly states '—that is, not normal—'..."
+                        name: "Recognizing Organization",
+                        skillText: "Passages don't just throw facts at you randomly — writers organize ideas on purpose, like comparing two things or explaining a cause and effect. Spot the pattern, and the passage gets so much easier to follow.",
+                        strategyText: "Watch for clue words like however, because, or similarly. They're little signs telling you where the passage is headed.",
+                        exampleSentence: "“The Nile is very long. However, the Amazon carries much more water.”",
+                        exampleQuestion: "How are these two ideas organized?",
+                        options: ["Cause and effect", "A list of steps", "A comparison / contrast", "A definition"],
+                        correctAnswer: 2,
+                        detailedFeedback: "Clue words are road signs. Follow them. In this case, 'however' signals a contrast between the two rivers, so the organization is comparison / contrast."
                     }
+                ]
+            },
+
+            "reading-2": {
+                title: "Directly Answered Questions",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Stated Details",
+                        skillText: "Some questions ask about facts stated directly in the passage — no guessing needed! The answer is right there in the text, sometimes just worded a little differently.",
+                        strategyText: "Scan for key words from the question, then read the sentence right around them carefully.",
+                        exampleSentence: "“The bridge was built in 1937.”",
+                        exampleQuestion: "When was the bridge built?",
+                        options: ["1937", "1973", "1932", "Not mentioned"],
+                        correctAnswer: 0,
+                        detailedFeedback: "If it's stated, it's there. Just go find it. The sentence clearly says 'The bridge was built in 1937,' so the answer is 1937."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Unstated Details",
+                        skillText: "These questions ask what the passage does NOT say. Three answer choices are true, and one is either false or just never mentioned.",
+                        strategyText: "Check each answer choice against the passage one by one. Cross off what you find — the one left over is your answer.",
+                        exampleSentence: "“The vase was blue, tall, and very heavy.”",
+                        exampleQuestion: "Which is NOT mentioned about the vase?",
+                        options: ["Its color", "Its height", "Its weight", "Its price"],
+                        correctAnswer: 3,
+                        detailedFeedback: "The answer you can't find is the answer. The passage mentions the vase's color, height, and weight, but never says anything about its price."
+                    },
+                    { 
+                        id: 3, 
+                        name: "Pronoun Referents",
+                        skillText: "Words like it, they, or this point back to something mentioned earlier in the passage. These questions simply ask: what is that something?",
+                        strategyText: "Look at the sentence right before the pronoun — the answer is almost always close by.",
+                        exampleSentence: "“Scientists studied the coral reefs. They found them badly damaged.”",
+                        exampleQuestion: "What does “them” refer to?",
+                        options: ["The scientists", "The coral reefs", "The ocean", "The damage"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Pronouns point backward. Look behind, not ahead. The word 'them' refers to 'the coral reefs' mentioned in the previous sentence."
+                    }
+                ]
+            },
+
+            "reading-3": {
+                title: "Indirectly Answered Questions",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Implied Details",
+                        skillText: "Sometimes the passage doesn't say something directly, but you can figure it out from the clues it gives you. That's an implied detail.",
+                        strategyText: "Combine what the passage does say with a little logic — you're reading between the lines.",
+                        exampleSentence: "“She wore a heavy coat and boots as she stepped outside.”",
+                        exampleQuestion: "What can you infer?",
+                        options: ["It's a sunny day", "It's probably cold outside", "She is going to a party", "She forgot her coat"],
+                        correctAnswer: 1,
+                        detailedFeedback: "The passage hints — you connect the dots. Wearing a heavy coat and boots suggests that it's probably cold outside, even though it doesn't say that directly."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Transition Questions",
+                        skillText: "These questions ask what topic probably comes right before or right after the passage you just read.",
+                        strategyText: "Check the very first and very last sentences closely — they usually connect to what came before or what's coming next.",
+                        exampleSentence: "“...and this shift in climate led to the next major extinction.”",
+                        exampleQuestion: "What does the next paragraph most likely discuss?",
+                        options: ["The history of oceans", "The extinction event", "How volcanoes form", "Ancient plants"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Endings and beginnings are doors to what's next. The last sentence mentions a major extinction, so the next paragraph will likely discuss that extinction event."
+                    }                 
+                ]
+            },
+
+            "reading-4": {
+                title: "Vocabulary in Context",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Structural Clues",
+                        skillText: "Sometimes a word's definition is hiding right in the sentence — tucked next to commas, dashes, or the word 'or.'",
+                        strategyText: "Look for punctuation clues around the tricky word — they often introduce a mini definition.",
+                        exampleSentence: "“The herbivore, an animal that eats only plants, grazed in the field.”",
+                        exampleQuestion: "What does “herbivore” mean?",
+                        options: ["An animal that eats meat", "An animal that eats only plants", "A type of field", "A grazing tool"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Punctuation can be your dictionary. The phrase 'an animal that eats only plants' is set off by commas, giving you the definition of 'herbivore' right there in the sentence."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Word Parts",
+                        skillText: "You can often guess a word's meaning by breaking it into smaller pieces — prefixes, roots, and suffixes.",
+                        strategyText: "Look for familiar parts. 'Un-' usually means not, '-less' usually means without, and so on.",
+                        exampleSentence: "“Unbreakable”",
+                        exampleQuestion: "What does “unbreakable” mean?",
+                        options: ["Able to break easily", "Not able to be broken", "Broken already", "Made of glass"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Break the word down to build the meaning up. The prefix 'un-' means 'not,' so 'unbreakable' means 'not able to be broken.'"
+                    },
+                    { 
+                        id: 3, 
+                        name: "Guessing Difficult Words",
+                        skillText: "You don't need to know every single word! You can guess a hard word's meaning just by reading the sentence around it.",
+                        strategyText: "Look at the words nearby — they often hint at whether it's positive, negative, big, small, and so on.",
+                        exampleSentence: "“The exhausted hikers finally reached camp.”",
+                        exampleQuestion: "What does “exhausted” most likely mean?",
+                        options: ["Excited", "Very tired", "Confused", "Hungry"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Don't panic over one word. Read around it. The sentence says the hikers 'finally reached camp,' which suggests they were very tired, so 'exhausted' most likely means 'very tired.'"
+                    },
+                    { 
+                        id: 4, 
+                        name: "Confirming Simple Words",
+                        skillText: "Sometimes a question asks about a word you already know — but be careful! The passage might be using it in a less common way.",
+                        strategyText: "Even for easy words, double-check the meaning using the sentence, not just your first guess.",
+                        exampleSentence: "“The company folded last year.”",
+                        exampleQuestion: "What does “folded” mean here?",
+                        options: ["Was folded like paper", "Closed down", "Grew bigger", "Moved location"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Easy words can have surprise meanings. Check the context. The sentence says 'the company folded last year,' which means it closed down, not that it was literally folded like paper."
+                    }                 
+                ]
+            },
+
+            "reading-5": {
+                title: "Overall Review Questions",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Locating Information",
+                        skillText: "These questions ask you to find which paragraph or line discusses a specific topic in the passage.",
+                        strategyText: "Skim for keywords from the question — you're searching, not reading word by word.",
+                        exampleSentence: "“Paragraph 2 discusses average sea temperatures across the year.”",
+                        exampleQuestion: "Which paragraph discusses average sea temperatures?",
+                        options: ["Paragraph 1", "Paragraph 2", "Paragraph 3", "Paragraph 4"],
+                        correctAnswer: 1,
+                        detailedFeedback: "You're a detective, not a reader. Scan for clues. The question asks about average sea temperatures, and the sentence clearly states that Paragraph 2 discusses that topic."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Tone, Purpose & Course",
+                        skillText: "These questions ask how the author feels about the topic, why they wrote the passage, or what class it probably came from.",
+                        strategyText: "Notice the author's word choices — are they neutral, excited, critical? That tells you the tone and purpose.",
+                        exampleSentence: "“This remarkable discovery changed everything we thought we knew.”",
+                        exampleQuestion: "What is the author's tone?",
+                        options: ["Bored", "Critical", "Excited and admiring", "Angry"],
+                        correctAnswer: 2,
+                        detailedFeedback: "Word choice reveals the author's feelings. The words 'remarkable' and 'changed everything we thought we knew' show excitement and admiration, so the tone is excited and admiring."
+                    },
+                    { 
+                        id: 3, 
+                        name: "Inserting Information",
+                        skillText: "These questions show you a new sentence and ask exactly where in the passage it fits best.",
+                        strategyText: "Look for connecting words like however or this in the new sentence — they'll match the idea right before it.",
+                        exampleSentence: "“This change had one major benefit.”",
+                        exampleQuestion: "Where should this sentence be inserted?",
+                        options: ["Before the change is described", "In the conclusion only", "At the very beginning", "Right after the change is described"],
+                        correctAnswer: 3,
+                        detailedFeedback: "Match the connector to its partner idea. The sentence starts with 'This change,' which refers to a change described earlier, so it fits best right after the change is described."
+                    }                 
                 ]
             },
 
@@ -89,21 +253,190 @@
             
             // Módulo 1 de Listening (Main Idea Questions)
             "listening-1": {
-                title: "Main Idea Questions",
-                desc: "Identify the primary topic or purpose of the audio classroom discussions.",
-                icon: "🎯",
+                title: "Short Dialogue Basics",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
                 items: [
-                    {
-                        id: 1,
-                        name: "Understanding the Purpose",
-                        skillText: "Purpose questions ask you why a speaker is initiating a conversation.",
-                        strategyText: "Listen carefully to the very beginning of the conversation...",
-                        exampleSentence: "Hi Professor, I was wondering if I could ask you a few questions about the assignment...",
-                        exampleQuestion: "Why does the student go to see the professor?",
-                        options: ["To hand in a late assignment", "To ask for clarification on an assignment", "To complain about a grade", "To discuss a research topic"],
+                    { 
+                        id: 1, 
+                        name: "Cracking Short Dialogues",
+                        skillText: "In short dialogues, the answer usually hides in the second speaker's line — especially the very last words. And here's a trick: the right answer is often a synonym, not the exact words you heard.",
+                        strategyText: "Focus on what the second person says, and expect the correct answer to be reworded, not repeated word-for-word.",
+                        exampleSentence: "Imagine you hear this:“Man: “Are you coming to the party?” Woman: “I have to study for finals.””",
+                        exampleQuestion: "What does the woman mean?",
+                        options: ["She is not coming", "She will come later", "She loves parties", "She finished studying"],
+                        correctAnswer: 0,
+                        detailedFeedback: "The last line is the key line. The woman says she has to study for finals, which implies she is not coming to the party. The answer is often a synonym or paraphrase of what was said."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Watch Out for Similar Sounds",
+                        skillText: "Some wrong answers sound almost like the correct one — they use similar-sounding words on purpose, just to trick you.",
+                        strategyText: "Don't just listen for a familiar sound. Make sure the full meaning matches, not just the noise.",
+                        exampleSentence: "Imagine you hear this word:“coast”",
+                        exampleQuestion: "Which answer choice is a sound-alike trap?",
+                        options: ["ocean", "beach", "sand", "toast"],
+                        correctAnswer: 3,
+                        detailedFeedback: "Sound-alikes are traps. Trust meaning, not sound. The word 'coast' sounds a bit like 'toast,' but 'toast' doesn't fit the context of the conversation, making it a trap answer."
+                    }                 
+                ]
+            },
+
+            "listening-2": {
+                title: "Spotting Key Details",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Who, What, Where",
+                        skillText: "Some questions simply ask you to identify who is speaking, what they're talking about, or where they are — even when it's never said directly.",
+                        strategyText: "Listen for small clues like job titles, locations, or objects mentioned — they reveal who, what, and where.",
+                        exampleSentence: "Imagine you hear this:““Can I get a refund on this shirt?””",
+                        exampleQuestion: "Where does this conversation most likely happen?",
+                        options: ["At a store", "At a restaurant", "At school", "At the airport"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Little clues answer big questions. The word 'refund' and 'shirt' suggest a retail context, so the conversation most likely happens at a store."
+                    }             
+                ]
+            },
+
+            "listening-3": {
+                title: "Negative Expressions",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Listening for 'No'",
+                        skillText: "Negative words like not, never, or hardly can completely flip a sentence's meaning — and double negatives can flip it right back again!",
+                        strategyText: "Listen closely for negative words — missing just one can send you to the wrong answer.",
+                        exampleSentence: "Imagine you hear this:““I wouldn't say he's unhappy.””",
+                        exampleQuestion: "What does this mean?",
+                        options: ["He is happy", "He is very sad", "He is angry", "Unknown feeling"],
+                        correctAnswer: 0,
+                        detailedFeedback: "One 'no' changes everything. Two 'no's' cancel out. The speaker says 'I wouldn't say he's unhappy,' which implies that he is happy, even though it's phrased in a roundabout way."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Sneaky Negatives",
+                        skillText: "Some expressions sound positive but are secretly negative, like hardly or barely. Negatives paired with comparisons can be tricky too.",
+                        strategyText: "Treat words like hardly, barely, and scarcely as hidden negatives — they mean almost none.",
+                        exampleSentence: "Imagine you hear this:““I hardly have any time.””",
+                        exampleQuestion: "What does “hardly” mean here?",
+                        options: ["A lot of", "Almost none", "Exactly enough", "Too much"],
                         correctAnswer: 1,
-                        detailedFeedback: "The student explicitly says 'ask you a few questions about the upcoming assignment guidelines'..."
-                    }
+                        detailedFeedback: "'Hardly' is quietly saying no. It means almost none. The speaker is saying they have almost no time, which is a negative statement."
+                    }                 
+                ]
+            },
+
+            "listening-4": {
+                title: "Functions & Tone",
+                desc: "Learn how to understand the function and tone of different sentences.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Agreement, Uncertainty & Surprise",
+                        skillText: "In conversations, people don't just share facts — they agree, hesitate, suggest, or react with surprise. These little expressions carry big meaning.",
+                        strategyText: "Listen for the speaker's tone and short reaction phrases — they tell you how the person really feels.",
+                        exampleSentence: "Imagine you hear this:““You're kidding me!””",
+                        exampleQuestion: "What does this expression show?",
+                        options: ["Anger", "Agreement", "Surprise", "Boredom"],
+                        correctAnswer: 2,
+                        detailedFeedback: "Tone tells the real story. The phrase 'You're kidding me!' is a common expression of surprise, indicating that the speaker is reacting to unexpected information."
+                    }               
+                ]
+            },
+
+            "listening-5": {
+                title: "Contrary Meanings & Idioms",
+                desc: "Learn to recognize expressions that have meanings opposite to their literal interpretation.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Wishes and Untrue Conditions",
+                        skillText: "Sentences with wish or an unreal if often describe something that is NOT true in real life.",
+                        strategyText: "When you hear wish or an unreal if, assume the opposite is actually true.",
+                        exampleSentence: "Imagine you hear this:““I wish I had studied more.””",
+                        exampleQuestion: "What is actually true?",
+                        options: ["She did not study enough", "She studied a lot", "She has an exam tomorrow", "She likes studying"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Wishes point to what's missing. The speaker says 'I wish I had studied more,' which implies that she did not study enough, even though she is expressing a desire for the opposite."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Phrasal Verbs & Idioms",
+                        skillText: "English is full of expressions where the words together mean something totally different from each word alone.",
+                        strategyText: "Learn common phrasal verbs and idioms as whole chunks, not word by word.",
+                        exampleSentence: "Imagine you hear this: ““I'll look into it.””",
+                        exampleQuestion: "What does “look into” mean?",
+                        options: ["Ignore", "Watch closely", "Look inside a box", "Investigate"],
+                        correctAnswer: 3,
+                        detailedFeedback: "Some phrases mean more than their words. 'Look into' is an idiom that means to investigate or examine something, not literally looking inside a box."
+                    }                 
+                ]
+            },
+
+            "listening-6": {
+                title: "Long Conversations & Talks",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Predict Before You Listen",
+                        skillText: "Before a long conversation or talk even starts, you can often guess the topic — and even the questions — just from the introduction.",
+                        strategyText: "Pay close attention to the first few seconds. They usually reveal the topic and setting right away.",
+                        exampleSentence: "Imagine you hear this intro: ““Today we'll discuss the water cycle.””",
+                        exampleQuestion: "What is this talk about?",
+                        options: ["The water cycle", "Ocean animals", "Weather forecasts", "Mountains"],
+                        correctAnswer: 0,
+                        detailedFeedback: "The intro is your preview. Use it. The speaker clearly states that the discussion will be about the water cycle, so that's the topic of the talk."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Track While You Listen",
+                        skillText: "Long conversations and talks cover a lot of ground. Staying organized in your head — the topic, key people, and order of ideas — helps you keep up.",
+                        strategyText: "Picture the structure as you listen: what's the topic, who's involved, and what order do things happen in?",
+                        exampleSentence: "Imagine you hear this order: ““...first evaporation, then condensation, then precipitation...””",
+                        exampleQuestion: "What comes right after evaporation?",
+                        options: ["Precipitation", "Condensation", "Ocean", "Rain"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Answers usually come in the order you hear them. Keep track of the sequence. The speaker lists 'first evaporation, then condensation, then precipitation,' so condensation comes right after evaporation."
+                    }                 
+                ]
+            },
+
+            "listening-7": {
+                title: "Computer-Based Passages",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Casual Conversations & Discussions",
+                        skillText: "On the computer test, you'll also hear casual chats and academic group discussions. These flow naturally, with people building on each other's ideas.",
+                        strategyText: "Notice who agrees, who disagrees, and how the conversation moves the ideas forward.",
+                        exampleSentence: "Imagine you hear this: “A student shares an idea, a classmate adds detail, and the professor confirms it.”",
+                        exampleQuestion: "What is happening in this discussion?",
+                        options: ["Ideas are being built on and confirmed", "The professor disagrees with everyone", "Students are arguing", "No one is speaking"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Follow the flow of ideas, not just the words. The student shares an idea, the classmate adds to it, and the professor confirms it, showing that ideas are being built on and confirmed."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Understanding Lectures",
+                        skillText: "Academic lectures are longer and more organized, often following a clear pattern — like a list, a comparison, or a cause and effect.",
+                        strategyText: "As you listen, try to 'see' the structure in your mind — imagine a simple outline forming.",
+                        exampleSentence: "Imagine you hear this: ““There are three types of volcanoes. The first type... the second type... the third type...””",
+                        exampleQuestion: "What structure is this lecture using?",
+                        options: ["A comparison of two things", "A debate", "A story", "A list"],
+                        correctAnswer: 3,
+                        detailedFeedback: "Build a mental outline as you listen. The speaker clearly states 'There are three types of volcanoes' and then lists them, indicating that the lecture is using a list structure."
+                    }                 
                 ]
             },
 
@@ -113,21 +446,256 @@
             
             // Módulo 1 de Structure (Sentences with One Clause)
             "structure-1": {
-                title: "Sentences with One Clause",
-                desc: "Master the fundamental rules for subjects and verbs in simple sentences.",
-                icon: "📝",
+                title: "Building Solid Sentences",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
                 items: [
-                    {
-                        id: 1,
-                        name: "Subject and Verb Agreement",
-                        skillText: "A sentence in English must have at least one subject and one verb.",
-                        strategyText: "Always locate the verb first, then verify if it has a matching subject.",
-                        exampleSentence: "The North Pole ________ a vast sheet of ice floating on the Arctic Ocean.",
-                        exampleQuestion: "Choose the correct option to complete the sentence:",
-                        options: ["it is", "is", "being", "which is"],
-                        correctAnswer: 1, // "is"
-                        detailedFeedback: "The sentence already has a subject ('The North Pole') but lacks a main verb. Option B correctly supplies the verb 'is' without repeating the subject."
+                    { 
+                        id: 1, 
+                        name: "Subject + Verb Basics",
+                        skillText: "Every complete sentence needs both a subject (who or what) and a verb (the action). Structure questions love hiding a sentence with one of these missing.",
+                        strategyText: "Quickly check: is there a clear subject, and is there a clear verb? If either is missing, something's wrong.",
+                        exampleSentence: "“The students the exam yesterday.”",
+                        exampleQuestion: "What is missing from this sentence?",
+                        options: ["A subject", "An object", "A verb", "Nothing"],
+                        correctAnswer: 2,
+                        detailedFeedback: "No subject, no verb, no sentence. Check both. The sentence says 'The students the exam yesterday,' which has a subject ('The students') but is missing a verb, making it incomplete."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Prepositional Phrase & Appositive Traps",
+                        skillText: "Prepositional phrases (like 'in the box') and appositives (extra info renaming a noun) often sit between the subject and verb — and can trick you into matching the wrong word.",
+                        strategyText: "Mentally cross out the extra phrase between commas or prepositions, then check if the sentence still makes sense.",
+                        exampleSentence: "“The keys, along with my wallet, ___ on the table.”",
+                        exampleQuestion: "Which verb correctly completes the sentence?",
+                        options: ["were", "was", "is", "are"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Cross out the extra info. Check what's left. The sentence becomes 'The keys ___ on the"
+                    },
+                    { 
+                        id: 3, 
+                        name: "Participles as Modifiers",
+                        skillText: "Words ending in -ing or -ed can describe nouns, but they need to match the right meaning — is the noun doing the action, or receiving it?",
+                        strategyText: "Ask yourself: is the noun doing the action (-ing), or having it done to them (-ed)?",
+                        exampleSentence: "“The ___ lecture put everyone to sleep.”",
+                        exampleQuestion: "Which word correctly completes the sentence?",
+                        options: ["boring", "bored", "bore", "bores"],
+                        correctAnswer: 0,
+                        detailedFeedback: "-ing does it, -ed feels it. The lecture is doing the action of boring, so 'boring' is correct. If it were 'bored,' it would mean the lecture felt bored, which doesn't make sense."
+                    }                 
+                ]
+            },
+
+            "structure-2": {
+                title: "Multiple Clauses",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Connecting Ideas Correctly",
+                        skillText: "Words like and, because, and although connect two ideas — but each connector has its own logic, and using the wrong one changes the meaning.",
+                        strategyText: "Ask yourself what relationship you need — addition, cause, or contrast — then pick the connector that matches.",
+                        exampleSentence: "“___ it rained, we went outside.”",
+                        exampleQuestion: "Which connector fits best?",
+                        options: ["Because", "Although", "So", "And"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Match the connector to the relationship. The sentence shows contrast: it rained, yet we went outside. 'Although' correctly expresses that contrast, while 'because' would suggest the rain caused us to go outside, which doesn't make sense."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Noun & Adjective Clauses",
+                        skillText: "Some clauses act like a single noun ('what she said surprised me'), and others describe a noun like an adjective ('the man who called'). Each type needs its own connector.",
+                        strategyText: "Ask what the clause is doing — naming a thing, or describing one — then choose that/who/which or what/whether to match.",
+                        exampleSentence: "“The book ___ I read was great.”",
+                        exampleQuestion: "Which word correctly completes the sentence?",
+                        options: ["what", "whether", "that", "if"],
+                        correctAnswer: 2,
+                        detailedFeedback: "Naming it? Use a noun clause word. Describing it? Use who, that, or which. The sentence describes 'the book,' so 'that' is the correct connector. 'What' would suggest the book is being named, which doesn't fit here."
+                    },
+                    { 
+                        id: 3, 
+                        name: "Reduced Clauses",
+                        skillText: "Sometimes a full clause gets shortened by dropping the subject and connector, leaving just a phrase behind.",
+                        strategyText: "If you see a phrase starting with -ing or -ed right after a noun, check that it can logically replace a full clause.",
+                        exampleSentence: "“The man ___ by the door is my teacher.”",
+                        exampleQuestion: "Which word correctly completes the sentence?",
+                        options: ["standing", "stood", "stands", "stand"],
+                        correctAnswer: 0,
+                        detailedFeedback: "A short phrase can hide a full clause. The phrase 'standing by the door' describes"
+                    }         
+                ]
+            },
+
+            "structure-3": {
+                title: "Inverted Sentences",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "When to Flip Subject and Verb",
+                        skillText: "Usually the subject comes before the verb — but with question words, negative openers, 'there,' or certain comparisons, the order flips!",
+                        strategyText: "If a sentence starts with a negative word (like never or rarely) or 'there,' expect the verb to come before the subject.",
+                        exampleSentence: "“Never ___ seen such a view.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["have I", "I have", "I had", "had I have"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Certain starters flip the order. Watch for them. The sentence starts with 'Never,' which is a negative opener, so the correct order is 'have I' instead of 'I have.'"
                     }
+                ]
+            },
+
+            "structure-4": {
+                title: "Agreement, Parallel Structure & Comparisons",
+                desc: "Learn about subject-verb agreement, parallel structure, and comparisons.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Subject-Verb Agreement",
+                        skillText: "The subject and verb of a sentence must always match in number — singular with singular, plural with plural — even when other words come between them.",
+                        strategyText: "Find the true subject first, ignoring any phrases in between, then match the verb to it.",
+                        exampleSentence: "“The list of items ___ long.”",
+                        exampleQuestion: "Which verb correctly completes the sentence?",
+                        options: ["is", "are", "was", "were"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Find the real subject. Then match the verb. The true subject is 'The list,' which is singular, so the correct verb is 'is,' even though 'of items' comes in between."
+                    },
+                    { 
+                        id: 2, 
+                        name: "Keeping It Parallel",
+                        skillText: "When you list or compare items in a sentence, they should all follow the same grammatical pattern.",
+                        strategyText: "Check that every item in a list or comparison uses the same form — all -ing, all nouns, or all verbs.",
+                        exampleSentence: "“She likes hiking, swimming, and ___.”",
+                        exampleQuestion: "Which word keeps the sentence parallel?",
+                        options: ["to run", "ran", "running", "runs"],
+                        correctAnswer: 2,
+                        detailedFeedback: "Keep your list dressed the same way. All items should match in form. The sentence lists activities, so 'hiking,' 'swimming,' and 'running' all use the -ing form, keeping the structure parallel."
+                    },
+                    { 
+                        id: 3, 
+                        name: "Comparing Things Correctly",
+                        skillText: "Comparative and superlative forms (taller, the tallest) follow specific rules, and a few words follow irregular patterns.",
+                        strategyText: "Use -er/-est for short words and more/most for longer ones — and watch for irregulars like better and best.",
+                        exampleSentence: "“This is ___ building in the city.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["the more tall", "the tallest", "more taller", "tall"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Short words add endings. Long words add 'more/most.' The word 'tall' is short, so the superlative form is 'the tallest,' not 'the more tall' or 'more taller.'"
+                    }                 
+                ]
+            },
+
+            "structure-5": {
+                title: "Verbs",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Verb Forms After Have, Be & Modals",
+                        skillText: "The word right before a verb often decides which form that verb must take — past participle, present participle, or base form.",
+                        strategyText: "After have, use the past participle. After be, use -ing or the past participle. After modals like will or would, use the base form.",
+                        exampleSentence: "“She has ___ home.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["went", "go", "gone", "going"],
+                        correctAnswer: 2,
+                        detailedFeedback: "The helper word decides the verb's shape. 'Has' is a form of 'have,' so the correct verb form is the past participle 'gone,' not 'went' or 'going.'"
+                    },
+                    { 
+                        id: 2, 
+                        name: "Choosing the Right Tense",
+                        skillText: "TOEFL loves testing whether you can match the correct tense with time clues in the sentence, like yesterday or since 2010.",
+                        strategyText: "Find the time expression first, then pick the tense that naturally goes with it.",
+                        exampleSentence: "“She ___ here since 2010.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["has lived", "lived", "lives", "was living"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Let the time clue choose the tense. The phrase 'since 2010' indicates an action that started in the past and continues to the present, so the correct tense is 'has lived,' which is present perfect."
+                    },
+                    { 
+                        id: 3, 
+                        name: "Active vs Passive",
+                        skillText: "In active voice, the subject does the action. In passive voice, the subject receives the action. Structure questions test whether you can tell these apart.",
+                        strategyText: "Ask: is the subject doing the action, or having it done to them? That tells you if it should be active or passive.",
+                        exampleSentence: "“The cake ___ by the kids.”",
+                        exampleQuestion: "Which correctly completes the passive sentence?",
+                        options: ["was eaten", "ate", "eats", "eating"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Doing it? Active. Getting it done to them? Passive. The sentence 'The cake ___ by the kids' shows that the cake is receiving the action, so the correct passive form is 'was eaten.'"
+                    }                                  
+                ]
+            },
+
+            "structure-6": {
+                title: "Nouns & Pronouns",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Nouns: Singular, Plural & Countable",
+                        skillText: "Some nouns can be counted (one apple, two apples), and some can't (information, not 'informations'). Mixing this up is a very common TOEFL trap.",
+                        strategyText: "Ask yourself if you can count the noun with numbers. If not, it's uncountable and stays singular.",
+                        exampleSentence: "“She gave me some ___.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["advices", "advice", "an advice", "advicing"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Can you count it? If not, keep it singular. 'Advice' is uncountable, so the correct form is 'advice,' not 'advices' or 'an advice.'"
+                    },
+                    { 
+                        id: 2, 
+                        name: "Pronoun Agreement",
+                        skillText: "Pronouns like he, his, and him must match the noun they replace in number and gender — and it should always be clear what they're referring to.",
+                        strategyText: "Trace every pronoun back to the exact noun it replaces, and make sure they truly match.",
+                        exampleSentence: "“Each student must bring ___ own book.”",
+                        exampleQuestion: "Which fits best in formal English?",
+                        options: ["their", "they", "our", "his or her"],
+                        correctAnswer: 3,
+                        detailedFeedback: "Match the pronoun to its noun, clearly. 'Each student' is singular, so the correct pronoun is 'his or her,' not 'their,' which is plural."
+                    }                 
+                ]
+            },
+
+            "structure-7": {
+                title: "Modifiers, Articles & Small Words",
+                desc: "Learn how to understand the meaning of words in different ways.",
+                icon: "🗺️",
+                items: [
+                    { 
+                        id: 1, 
+                        name: "Adjectives vs Adverbs",
+                        skillText: "Adjectives describe nouns, and adverbs describe verbs — mixing them up is one of the most common structure mistakes on the test.",
+                        strategyText: "Ask what the word is describing: a person or thing (use an adjective) or an action (use an adverb).",
+                        exampleSentence: "“She sings ___.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["beautifully", "beautiful", "beauty", "beautifulness"],
+                        correctAnswer: 0,
+                        detailedFeedback: "Describing a noun? Adjective. Describing an action? Adverb. The sentence 'She sings ___' describes how she sings, which is an action, so the correct form is the adverb 'beautifully.'"
+                    },
+                    { 
+                        id: 2, 
+                        name: "Articles: A, An & The",
+                        skillText: "Choosing between a, an, the, or no article at all depends on whether something is specific, general, or already mentioned.",
+                        strategyText: "Ask: are we talking about something specific (use 'the') or something general (use 'a/an' or nothing)?",
+                        exampleSentence: "“I saw a movie. ___ movie was great.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["An", "A", "The", "No article"],
+                        correctAnswer: 2,
+                        detailedFeedback: "New idea? 'A/an.' Familiar idea? 'The.' The first sentence introduces 'a movie,' which is general. The second sentence refers back to that specific movie, so the correct article is 'The.'"
+                    },
+                    { 
+                        id: 3, 
+                        name: "Prepositions & Word Mix-ups",
+                        skillText: "Some words are commonly confused, like make vs. do or other vs. another, and prepositions are sometimes used incorrectly or even left out completely.",
+                        strategyText: "Learn these tricky pairs as fixed expressions — the 'right' choice often isn't about logic, it's just common usage.",
+                        exampleSentence: "“We need to ___ a decision.”",
+                        exampleQuestion: "Which correctly completes the sentence?",
+                        options: ["make", "do", "take", "reach"],
+                        correctAnswer: 2,
+                        detailedFeedback: "Some words travel in pairs. Learn the pairs. The correct expression is 'make a decision,' not 'do a decision' or 'take a decision.'"
+                    }                 
                 ]
             }
 
