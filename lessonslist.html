@@ -33,14 +33,29 @@
         </div>
     </main>
 
-    <!-- Barra de Navegación Inferior Estándar -->
+    <!-- BARRA DE NAVEGACIÓN INFERIOR CON SVG -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-50">
         <div class="max-w-2xl mx-auto flex justify-around items-center py-2.5 px-2">
-            <button onclick="location.href='dashboardtest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">🏠<span class="mt-1">Home</span></button>
-            <button onclick="location.href='indextest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">📝<span class="mt-1">Practice</span></button>
-            <button onclick="location.href='learntest.html'" class="flex flex-col items-center gap-1 text-indigo-600 flex-1 text-[11px] font-semibold cursor-pointer">📖<span class="mt-1">Learn</span></button>
-            <button onclick="location.href='tutortest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">💬<span class="mt-1">Chat</span></button>
-            <button onclick="location.href='profiletest.html'" class="flex flex-col items-center gap-1 text-gray-400 flex-1 text-[11px] font-medium cursor-pointer">👤<span class="mt-1">Profile</span></button>
+            <button onclick="location.href='dashboardtest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
+                <span>Home</span>
+            </button>
+            <button onclick="location.href='indextest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" /></svg>
+                <span>Practice</span>
+            </button>
+            <button onclick="location.href='learntest.html'" class="flex flex-col items-center gap-1 text-indigo-600 flex-1 text-[11px] font-semibold cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" /></svg>
+                <span>Learn</span>
+            </button>
+            <button onclick="location.href='tutortest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a.75.75 0 0 1-.816-.983 4.5 4.5 0 0 0 .558-2.12c-1.89-1.503-3.076-3.6-3.076-5.867A8.25 8.25 0 0 1 12 3.75c4.97 0 9 3.694 9 8.25Z" /></svg>
+                <span>Chat</span>
+            </button>
+            <button onclick="location.href='profiletest.html'" class="flex flex-col items-center gap-1 text-gray-400 hover:text-indigo-600 flex-1 text-[11px] font-medium cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /></svg>
+                <span>Profile</span>
+            </button>
         </div>
     </div>
 
@@ -738,37 +753,37 @@
         });
 
         function goToLesson(section, modId, lessonId, total, lessonIndex) {
-            const key = `${section}-${modId}`;
-            let targetLessonData = null;
+        const key = `${section}-${modId}`;
+        let targetLessonData = null;
 
-            // Verificamos de forma segura si la clave existe en tu base de datos
-            if (LESSONS_DATABASE[key] && LESSONS_DATABASE[key].items && LESSONS_DATABASE[key].items[lessonIndex]) {
-                // Si existe, extraemos tus datos reales escritos a mano
-                targetLessonData = LESSONS_DATABASE[key].items[lessonIndex];
-            } else {
-                // Si aún no has escrito este módulo (ej: "reading-1"), creamos una lección de prueba automática
-                const currentData = LESSONS_DATABASE[key] || {};
-                const modTitle = currentData.title || `Module ${modId}`;
-                
-                targetLessonData = {
-                    id: lessonId,
-                    name: lessonIndex === 0 ? "Introduction Strategy" : `Advanced Practice Drill ${lessonId}`,
-                    skillText: `This is a study skill overview for ${modTitle} in the ${section} section.`,
-                    strategyText: "Read the prompt carefully, eliminate obviously wrong options, and look for key indicators.",
-                    exampleSentence: "The candidate's argument was <span class='text-indigo-600 font-bold underline'>lucid</span> and easy for everyone to understand.",
-                    exampleQuestion: "What does the word lucid mean in this context?",
-                    options: ["Confusing", "Clear and easy to understand", "Extremely loud", "Boring"],
-                    correctAnswer: 1, // Opción B
-                    detailedFeedback: "The text provides a direct structural clue right after the word: 'and easy for everyone to understand', which directly describes clarity."
-                };
-            }
-
-            // Guardamos los datos de forma segura en la sesión del navegador
-            sessionStorage.setItem("current_lesson_data", JSON.stringify(targetLessonData));
+        // Verificamos si la clave existe en tu LESSONS_DATABASE
+        if (LESSONS_DATABASE[key] && LESSONS_DATABASE[key].items && LESSONS_DATABASE[key].items[lessonIndex]) {
+            targetLessonData = LESSONS_DATABASE[key].items[lessonIndex];
+        } else {
+            // Objeto de respaldo con skillText y strategyText garantizados
+            const currentData = LESSONS_DATABASE[key] || {};
+            const modTitle = currentData.title || `Module ${modId}`;
             
-            // Redirigimos a la pantalla interactiva
-            window.location.href = `lessonview.html?section=${section}&moduleId=${modId}&lessonId=${lessonId}&total=${total}`;
+            targetLessonData = {
+                id: lessonId,
+                name: lessonIndex === 0 ? "Finding the Main Idea" : `Lesson ${lessonId}: Practice`,
+                skillText: "Main idea questions require you to identify the central point of the passage rather than getting lost in small details.",
+                strategyText: "Read the first sentence of each paragraph to locate the core message, then ask yourself what the text is mostly about.",
+                exampleSentence: "Bats use echolocation to navigate and find food in total darkness.",
+                exampleQuestion: "What is the primary topic of the sentence?",
+                options: ["How bats navigate", "Types of food bats eat", "Why caves are dark", "The size of bats"],
+                correctAnswer: 0,
+                detailedFeedback: "The sentence explains how bats use echolocation to navigate.",
+                rememberText: "Always focus on the main point rather than isolated facts."
+            };
         }
+
+        // Guardamos los datos completos en el navegador
+        sessionStorage.setItem("current_lesson_data", JSON.stringify(targetLessonData));
+        
+        // Redirigimos a la vista de lección
+        window.location.href = `lessonview.html?section=${section}&moduleId=${modId}&lessonId=${lessonId}&total=${total}`;
+    }
     </script>
 </body>
 </html>
