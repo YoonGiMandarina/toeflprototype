@@ -236,11 +236,38 @@
 
         feedbackBox.classList.remove("hidden");
         nextBtn.classList.remove("hidden");
-    }
 
+    }
     function finishOrNextLesson() {
         if (lessonId < totalLessons) {
-            window.location.href = `lessonview.html?section=${section}&moduleId=${moduleId}&lessonId=${lessonId + 1}&total=${totalLessons}`;
+            const nextLessonId = lessonId + 1;
+            
+            // 1. Intentamos leer la lista de lecciones del módulo
+            const moduleItemsRaw = sessionStorage.getItem("current_module_items");
+            let moduleItems = moduleItemsRaw ? JSON.parse(moduleItemsRaw) : [];
+
+            // 2. Si existe la lección en la lista, la guardamos como la lección actual
+            if (moduleItems && moduleItems[lessonId]) { // lessonId sirve como el siguiente índice
+                sessionStorage.setItem("current_lesson_data", JSON.stringify(moduleItems[lessonId]));
+            } else {
+                // Generador dinámico para lecciones sin redactar aún
+                const dynamicLesson = {
+                    id: nextLessonId,
+                    name: `Lesson ${nextLessonId}: Advanced Drill`,
+                    skillText: `This is the overview for practice skill #${nextLessonId} in this module.`,
+                    strategyText: "Pay attention to context clues and elimination strategies.",
+                    exampleSentence: "The results were inconclusive, requiring further investigation.",
+                    exampleQuestion: "What does inconclusive mean?",
+                    options: ["Definite", "Uncertain", "Final", "Clear"],
+                    correctAnswer: 1,
+                    detailedFeedback: "Inconclusive means not leading to a firm conclusion.",
+                    rememberText: "Always review key terms before picking an answer."
+                };
+                sessionStorage.setItem("current_lesson_data", JSON.stringify(dynamicLesson));
+            }
+
+            // 3. Redirigimos a la siguiente lección
+            window.location.href = `lessonview.html?section=${section}&moduleId=${moduleId}&lessonId=${nextLessonId}&total=${totalLessons}`;
         } else {
             currentStep = 4;
             renderStep();

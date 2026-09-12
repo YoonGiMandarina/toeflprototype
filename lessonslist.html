@@ -753,37 +753,27 @@
         });
 
         function goToLesson(section, modId, lessonId, total, lessonIndex) {
-        const key = `${section}-${modId}`;
-        let targetLessonData = null;
-
-        // Verificamos si la clave existe en tu LESSONS_DATABASE
-        if (LESSONS_DATABASE[key] && LESSONS_DATABASE[key].items && LESSONS_DATABASE[key].items[lessonIndex]) {
-            targetLessonData = LESSONS_DATABASE[key].items[lessonIndex];
-        } else {
-            // Objeto de respaldo con skillText y strategyText garantizados
-            const currentData = LESSONS_DATABASE[key] || {};
-            const modTitle = currentData.title || `Module ${modId}`;
+            const key = `${section}-${modId}`;
             
-            targetLessonData = {
+            // 1. Obtenemos las lecciones del módulo o creamos el arreglo por defecto
+            const currentModule = LESSONS_DATABASE[key] || { items: [] };
+            
+            // 2. Guardamos TODO el módulo actual en el sessionStorage
+            sessionStorage.setItem("current_module_items", JSON.stringify(currentModule.items));
+            
+            // 3. Guardamos la lección seleccionada
+            const targetLessonData = currentModule.items[lessonIndex] || {
                 id: lessonId,
-                name: lessonIndex === 0 ? "Finding the Main Idea" : `Lesson ${lessonId}: Practice`,
-                skillText: "Main idea questions require you to identify the central point of the passage rather than getting lost in small details.",
-                strategyText: "Read the first sentence of each paragraph to locate the core message, then ask yourself what the text is mostly about.",
-                exampleSentence: "Bats use echolocation to navigate and find food in total darkness.",
-                exampleQuestion: "What is the primary topic of the sentence?",
-                options: ["How bats navigate", "Types of food bats eat", "Why caves are dark", "The size of bats"],
-                correctAnswer: 0,
-                detailedFeedback: "The sentence explains how bats use echolocation to navigate.",
-                rememberText: "Always focus on the main point rather than isolated facts."
+                name: `Lesson ${lessonId}`,
+                skillText: "Main idea questions require you to identify the central point of the passage.",
+                strategyText: "Read the first sentence of each paragraph to locate the core message."
             };
-        }
+            
+            sessionStorage.setItem("current_lesson_data", JSON.stringify(targetLessonData));
 
-        // Guardamos los datos completos en el navegador
-        sessionStorage.setItem("current_lesson_data", JSON.stringify(targetLessonData));
-        
-        // Redirigimos a la vista de lección
-        window.location.href = `lessonview.html?section=${section}&moduleId=${modId}&lessonId=${lessonId}&total=${total}`;
-    }
+            // 4. Redirigimos pasando también el índice
+            window.location.href = `lessonview.html?section=${section}&moduleId=${modId}&lessonId=${lessonId}&total=${total}&index=${lessonIndex}`;
+        }
     </script>
 </body>
 </html>
