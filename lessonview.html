@@ -55,14 +55,14 @@
 </div>
 
         <script>
-    // 1. Obtener parámetros de la URL
+    // 1. Parámetros URL
     const params = new URLSearchParams(window.location.search);
     const section = (params.get('section') || 'reading').toLowerCase();
     const moduleId = params.get('moduleId') || '4';
     const lessonId = parseInt(params.get('lessonId')) || 1;
     const totalLessons = parseInt(params.get('total')) || 4;
 
-    // 2. Mapeo de imágenes por sección
+    // 2. Mapeo de imágenes
     const TOFI_IMAGES = {
         reading: 'Reading TOFI Correcto.png',
         structure: 'Grammar TOFI Correcto.png',
@@ -71,40 +71,44 @@
     };
     const currentTofiImg = TOFI_IMAGES[section] || TOFI_IMAGES.default;
 
-    // 3. Lectura Directa de sessionStorage
+    // 3. Lectura de sessionStorage
     let localData = sessionStorage.getItem("current_lesson_data");
     let rawData = {};
-
     if (localData) {
-        try {
-            rawData = JSON.parse(localData);
-        } catch (e) {
-            console.error("Error parseando sessionStorage", e);
-        }
+        try { rawData = JSON.parse(localData); } catch (e) { console.error(e); }
     }
 
-    // Mapeo forzado con valores de fallback visibles si no hay datos
+    // Normalizar arreglo de ejemplos
+    let parsedExamples = rawData.examples || [];
+    if (!parsedExamples.length && rawData.exampleSentence) {
+        parsedExamples.push({
+            exampleSentence: rawData.exampleSentence,
+            exampleQuestion: rawData.exampleQuestion,
+            options: rawData.options,
+            correctAnswer: rawData.correctAnswer,
+            detailedFeedback: rawData.detailedFeedback
+        });
+    }
+    if (!parsedExamples.length) {
+        parsedExamples.push({
+            exampleSentence: "Bats use echolocation to navigate in darkness.",
+            exampleQuestion: "What is the primary topic of the sentence?",
+            options: ["How bats navigate", "Types of food bats eat", "Why caves are dark", "The size of bats"],
+            correctAnswer: 0,
+            detailedFeedback: "The sentence explains how bats use echolocation to navigate."
+        });
+    }
+
     const CONTENT_DATABASE = {
         title: rawData.name || rawData.title || "Understanding Main Ideas",
-        skillText: rawData.skillText || rawData.skill_text || rawData.skill || rawData.desc,
-        strategyText: rawData.strategyText || rawData.strategy_text || rawData.strategy,
-        exampleSentence: rawData.exampleSentence || rawData.example_sentence || "Bats use echolocation to navigate in darkness.",
-        exampleQuestion: rawData.exampleQuestion || rawData.example_question || "What is the primary topic of the sentence?",
-        options: rawData.options || ["How bats navigate", "Types of food bats eat", "Why caves are dark", "The size of bats"],
-        correctAnswer: rawData.correctAnswer !== undefined ? rawData.correctAnswer : 0,
-        detailedFeedback: rawData.detailedFeedback || rawData.feedback || "The sentence explains how bats use echolocation to navigate.",
-        rememberText: rawData.rememberText || rawData.remember || "Always focus on the central message."
+        skillText: rawData.skillText || rawData.desc || "Main idea questions require you to identify the central point.",
+        strategyText: rawData.strategyText || "Read the first sentence of each paragraph to locate the core message.",
+        rememberText: rawData.rememberText || "Always focus on the central message.",
+        examples: parsedExamples
     };
 
-    // Si sigue viniendo indefinido desde el objeto, le asignamos el texto descriptivo
-    if (!CONTENT_DATABASE.skillText) {
-        CONTENT_DATABASE.skillText = "Main idea questions require you to identify the central point of the passage rather than getting lost in small details.";
-    }
-    if (!CONTENT_DATABASE.strategyText) {
-        CONTENT_DATABASE.strategyText = "Read the first sentence of each paragraph to locate the core message, then ask yourself what the text is mostly about.";
-    }
-
     let currentStep = 1;
+    let currentExampleIndex = 0;
 
     function renderStep() {
         const container = document.getElementById("view-content");
@@ -113,7 +117,6 @@
 
         if (progText) progText.innerText = `LESSON ${lessonId} OF ${totalLessons}`;
         if (fill) fill.style.width = `${(currentStep / 4) * 100}%`;
-
         if (!container) return;
 
         if (currentStep === 1) {
@@ -125,11 +128,11 @@
                     </div>
                     <div class="space-y-6">
                         <div>
-                            <h3 class="text-xs font-bold text-indigo-950 uppercase tracking-wider flex items-center gap-1.5">🐱 WHAT IS THIS SKILL?</h3>
+                            <h3 class="text-xs font-bold text-indigo-950 uppercase tracking-wider">🐱 WHAT IS THIS SKILL?</h3>
                             <p class="text-gray-600 text-sm mt-2 leading-relaxed font-medium">${CONTENT_DATABASE.skillText}</p>
                         </div>
                         <div class="pt-2">
-                            <h3 class="text-xs font-bold text-indigo-950 uppercase tracking-wider flex items-center gap-1.5">💡 TOFI'S STRATEGY</h3>
+                            <h3 class="text-xs font-bold text-indigo-950 uppercase tracking-wider">💡 TOFI'S STRATEGY</h3>
                             <p class="text-gray-600 text-sm mt-2 leading-relaxed font-medium">${CONTENT_DATABASE.strategyText}</p>
                         </div>
                     </div>
@@ -138,8 +141,9 @@
             `;
         } 
         else if (currentStep === 2) {
+            const currentEx = CONTENT_DATABASE.examples[currentExampleIndex];
             let optionsHTML = "";
-            CONTENT_DATABASE.options.forEach((opt, idx) => {
+            currentEx.options.forEach((opt, idx) => {
                 optionsHTML += `
                     <button id="opt-${idx}" onclick="checkExampleAnswer(${idx})" class="w-full text-left bg-white border border-gray-100 hover:border-indigo-100 rounded-xl p-3.5 text-sm font-medium transition cursor-pointer flex items-center gap-3">
                         <span class="font-bold text-gray-400 text-xs">${String.fromCharCode(65 + idx)}.</span> ${opt}
@@ -147,18 +151,25 @@
                 `;
             });
 
+            const isLastExample = currentExampleIndex === CONTENT_DATABASE.examples.length - 1;
+
             container.innerHTML = `
                 <div class="flex-1">
-                    <h3 class="text-xs font-bold text-indigo-950 uppercase tracking-wider mb-3">✨ Quick Example</h3>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xs font-bold text-indigo-950 uppercase tracking-wider">✨ Quick Example</h3>
+                        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full">Example ${currentExampleIndex + 1} of ${CONTENT_DATABASE.examples.length}</span>
+                    </div>
                     <p class="text-gray-500 text-xs font-semibold mb-3">Read the sentence below.</p>
                     <div class="bg-indigo-50/50 border border-indigo-100 rounded-xl p-4 mb-5 text-sm text-slate-800 leading-relaxed font-medium">
-                        "${CONTENT_DATABASE.exampleSentence}"
+                        "${currentEx.exampleSentence}"
                     </div>
-                    <p class="text-slate-900 font-bold text-sm mb-4">${CONTENT_DATABASE.exampleQuestion}</p>
+                    <p class="text-slate-900 font-bold text-sm mb-4">${currentEx.exampleQuestion}</p>
                     <div class="space-y-2.5">${optionsHTML}</div>
                     <div id="example-feedback" class="hidden mt-5 p-4 border rounded-xl text-xs leading-relaxed transition-all duration-300"></div>
                 </div>
-                <button id="btn-next-step" onclick="nextStep()" class="hidden w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md mt-8 transition cursor-pointer text-center">Next ➔</button>
+                <button id="btn-next-step" onclick="handleExampleNext()" class="hidden w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md mt-8 transition cursor-pointer text-center">
+                    ${isLastExample ? 'Next Step ➔' : 'Next Example ➔'}
+                </button>
             `;
         } 
         else if (currentStep === 3) {
@@ -179,7 +190,6 @@
             `;
         } 
         else if (currentStep === 4) {
-            // PASO 4: FELICITACIONES + OPCIONES DE NAVEGACIÓN + TOFI PERSONALIZADO
             container.innerHTML = `
                 <div class="flex-1 flex flex-col items-center text-center mt-4">
                     <div class="text-4xl mb-3">🎉 🥳 🎉</div>
@@ -188,12 +198,9 @@
                     <p class="text-gray-500 text-sm mt-2 font-medium max-w-xs">You're ready to practice this skill or continue learning.</p>
                 </div>
                 <div class="space-y-3 w-full mt-8">
-                    <!-- Botón 1: Ir a practicar en la sección actual -->
                     <button onclick="location.href='indextest.html?section=${section}'" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition cursor-pointer text-center text-sm">
                         Go to Practice ➔
                     </button>
-                    
-                    <!-- Botón 2: Volver a la lista de lecciones del módulo -->
                     <button onclick="location.href='lessonslist.html?section=${section}&moduleId=${moduleId}'" class="w-full bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold py-3.5 px-4 rounded-xl transition cursor-pointer text-center text-sm">
                         Back to Lessons
                     </button>
@@ -208,11 +215,12 @@
     }
 
     function checkExampleAnswer(selectedIdx) {
-        const correctIdx = CONTENT_DATABASE.correctAnswer;
+        const currentEx = CONTENT_DATABASE.examples[currentExampleIndex];
+        const correctIdx = currentEx.correctAnswer;
         const feedbackBox = document.getElementById("example-feedback");
         const nextBtn = document.getElementById("btn-next-step");
 
-        CONTENT_DATABASE.options.forEach((_, idx) => {
+        currentEx.options.forEach((_, idx) => {
             const btn = document.getElementById(`opt-${idx}`);
             if (btn) {
                 btn.onclick = null;
@@ -224,49 +232,54 @@
         if (selectedIdx === correctIdx) {
             document.getElementById(`opt-${selectedIdx}`).className = "w-full text-left border-2 border-emerald-500 bg-emerald-50 rounded-xl p-3.5 text-sm font-semibold text-emerald-900";
             feedbackBox.className = "mt-5 p-4 border border-emerald-100 bg-emerald-50 text-emerald-950 rounded-xl text-xs leading-relaxed font-medium";
-            feedbackBox.innerHTML = `<span class="text-xs text-emerald-600 font-bold uppercase tracking-wider block mb-1">🎯 Correct!</span> ${CONTENT_DATABASE.detailedFeedback}`;
+            feedbackBox.innerHTML = `<span class="text-xs text-emerald-600 font-bold uppercase tracking-wider block mb-1">🎯 Correct!</span> ${currentEx.detailedFeedback}`;
         } else {
             document.getElementById(`opt-${selectedIdx}`).className = "w-full text-left border-2 border-rose-500 bg-rose-50 rounded-xl p-3.5 text-sm font-semibold text-rose-900";
             if (document.getElementById(`opt-${correctIdx}`)) {
                 document.getElementById(`opt-${correctIdx}`).className = "w-full text-left border-2 border-emerald-500 bg-emerald-50 rounded-xl p-3.5 text-sm font-semibold text-emerald-900";
             }
             feedbackBox.className = "mt-5 p-4 border border-rose-100 bg-rose-50 text-rose-950 rounded-xl text-xs leading-relaxed font-medium";
-            feedbackBox.innerHTML = `<span class="text-xs text-rose-600 font-bold uppercase tracking-wider block mb-1">❌ Incorrect!</span> ${CONTENT_DATABASE.detailedFeedback}`;
+            feedbackBox.innerHTML = `<span class="text-xs text-rose-600 font-bold uppercase tracking-wider block mb-1">❌ Incorrect!</span> ${currentEx.detailedFeedback}`;
         }
 
         feedbackBox.classList.remove("hidden");
         nextBtn.classList.remove("hidden");
-
     }
+
+    function handleExampleNext() {
+        if (currentExampleIndex < CONTENT_DATABASE.examples.length - 1) {
+            currentExampleIndex++;
+            renderStep();
+        } else {
+            nextStep();
+        }
+    }
+
     function finishOrNextLesson() {
         if (lessonId < totalLessons) {
             const nextLessonId = lessonId + 1;
-            
-            // 1. Intentamos leer la lista de lecciones del módulo
             const moduleItemsRaw = sessionStorage.getItem("current_module_items");
             let moduleItems = moduleItemsRaw ? JSON.parse(moduleItemsRaw) : [];
 
-            // 2. Si existe la lección en la lista, la guardamos como la lección actual
-            if (moduleItems && moduleItems[lessonId]) { // lessonId sirve como el siguiente índice
+            if (moduleItems && moduleItems[lessonId]) {
                 sessionStorage.setItem("current_lesson_data", JSON.stringify(moduleItems[lessonId]));
             } else {
-                // Generador dinámico para lecciones sin redactar aún
                 const dynamicLesson = {
                     id: nextLessonId,
                     name: `Lesson ${nextLessonId}: Advanced Drill`,
-                    skillText: `This is the overview for practice skill #${nextLessonId} in this module.`,
-                    strategyText: "Pay attention to context clues and elimination strategies.",
-                    exampleSentence: "The results were inconclusive, requiring further investigation.",
-                    exampleQuestion: "What does inconclusive mean?",
-                    options: ["Definite", "Uncertain", "Final", "Clear"],
-                    correctAnswer: 1,
-                    detailedFeedback: "Inconclusive means not leading to a firm conclusion.",
+                    skillText: `Overview for practice skill #${nextLessonId}.`,
+                    strategyText: "Pay attention to context clues.",
+                    examples: [{
+                        exampleSentence: "The results were inconclusive, requiring further investigation.",
+                        exampleQuestion: "What does inconclusive mean?",
+                        options: ["Definite", "Uncertain", "Final", "Clear"],
+                        correctAnswer: 1,
+                        detailedFeedback: "Inconclusive means not leading to a firm conclusion."
+                    }],
                     rememberText: "Always review key terms before picking an answer."
                 };
                 sessionStorage.setItem("current_lesson_data", JSON.stringify(dynamicLesson));
             }
-
-            // 3. Redirigimos a la siguiente lección
             window.location.href = `lessonview.html?section=${section}&moduleId=${moduleId}&lessonId=${nextLessonId}&total=${totalLessons}`;
         } else {
             currentStep = 4;
@@ -275,6 +288,6 @@
     }
 
     document.addEventListener("DOMContentLoaded", renderStep);
-    </script>
+</script>
 </body>
 </html>
