@@ -27,7 +27,7 @@
 
             <div id="instructions-screen" class="block">
                 <h2 id="inst-title" class="text-2xl font-bold text-gray-900 mb-2">loading section...</h2>
-                <span id="inst-badge" class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded">Instrucciones Oficiales</span>
+                <span id="inst-badge" class="bg-amber-100 text-amber-800 text-xs font-semibold px-2.5 py-0.5 rounded">Instructions</span>
                 
                 <p id="inst-text" class="text-gray-600 my-4 leading-relaxed"></p>
                 
@@ -123,7 +123,7 @@
         const questionsDatabase = [
             {
                 section: "listening",
-                audio: "https://ia600100.us.archive.org/6/items/sonido-39/Sonido%2001.mp3",
+                audio: "https://ia600403.us.archive.org/19/items/question-number-1/question%20number%201.mp3",
                 subType: "short_dialogue", // 👈 AGREGAR ESTO
                 question: "Please listen to the audio and choose the best answer.",
                 options: ["She'll stay for a little while.", "She'll talk to him about his raise.", "She prefers to continue working.", "She'd like a short vacation."],
@@ -393,7 +393,7 @@
             },
             {
                 section: "listening",
-                audio: "https://ia600100.us.archive.org/6/items/sonido-39/Sonido%2031.mp3", 
+                audio: "https://ia903202.us.archive.org/2/items/sonido-39-editado/Sonido%2031%20%28editado%29.mp3", 
                 subType: "long_conversation", // 👈 AGREGAR ESTO
                 groupId: "Listening_1",       // 👈 AGREGAR ESTO (Solo si comparten el mismo passage)
                 question: "Please listen to the audio and choose the best answer.",
@@ -473,7 +473,7 @@
             },
             {
                 section: "listening",
-                audio: "https://ia600100.us.archive.org/6/items/sonido-39/Sonido%2039.mp3", 
+                audio: "https://ia903202.us.archive.org/2/items/sonido-39-editado/Sonido%2039%20%28editado%29.mp3", 
                 subType: "long_conversation",
                 groupId: "Listening_3",
                 question: "Please listen to the audio and choose the best answer.",
@@ -5209,11 +5209,32 @@
         ];
 
         const sectionInfo = {
-            listening: { title: "Listening Comprehension", text: "Measures your ability to understand formal English conversations. This section consists of a maximum of 2 random items.", strategy: "Focus on the second line of dialogue from each speaker." },
-            structure: { title: "Structure & Written Expression", text: "Measures your command of grammar and formal written expression. This section consists of a maximum of 2 random items.", strategy: "First, locate the Subject and the main Verb of the sentence." },
-            reading: { title: "Reading Comprehension", text: "Measures your ability to understand academic texts. This section consists of a maximum of 2 random items.", strategy: "Perform a quick scan (scanning) to find the key word." },
-            full: { title: "TOEFL ITP Full Test Simulator", text: "You will start the full test with official time limits by section and without immediate feedback. The test consists of up to 6 randomly selected items.", strategy: "Strict times apply per section." }
-        };
+            listening: { title: "Listening Comprehension", text: "Measures your ability to understand spoken English. In this section, you will listen to short conversations between two speakers. After each conversation, you will hear a question about what the speakers said. The conversations and questions will be played only once.\n\nFor each question, choose the best answer from the four choices provided. The choices are not spoken in the recording.\n\nListen carefully to the conversation and the question before selecting your answer. Pay attention to the speakers' main ideas, specific details, implied meanings, opinions, and expressions.", strategy: "• Pay attention to the main idea and important details.\n• Listen for the speakers' intentions, opinions, and attitudes.\n• Use context to understand unfamiliar words or expressions.\n• Choose only ONE answer for each question.\n\nAfter listening to the conversation and the question, select the answer that best answers the question.\n\nWork efficiently and continue to the next question when you have finished." },
+            structure: { title: "Structure & Written Expression", text: "Measures your command of grammar and formal written expression. In this section, you will read incomplete sentences. Each sentence has a blank where one word or phrase is missing.\n\nFor each question, choose the word or phrase that correctly completes the sentence.\n\nRead each sentence carefully and pay attention to its grammar, meaning, and structure. Choose the option that makes the sentence grammatically correct and complete.", strategy: "• Read the entire sentence before choosing an answer.\n• Pay attention to subject-verb agreement, verb tenses, pronouns, articles, prepositions, and other grammatical structures.\n• Consider both grammar and meaning.\n• Eliminate options that are grammatically incorrect.\n• Choose only ONE answer for each question.\n\nAfter selecting your answer, continue to the next question.\n\nWork carefully, but manage your time so that you can complete all the questions in this section." },
+            reading: { title: "Reading Comprehension", text: "Measures your ability to understand academic texts. In this section, you will read several passages followed by questions about the information presented in each passage.\n\nFor each question, choose the best answer from the four choices provided.\n\nRead each passage carefully and use the information in the passage to answer the questions. The questions may ask about the main idea, specific details, vocabulary in context, references, inferences, organization, or information that is not mentioned.", strategy: "• Read the passage carefully and identify its main idea.\n• Pay attention to important details and supporting information.\n• Use context to determine the meaning of unfamiliar words.\n• Look carefully at pronouns and what they refer to.\n• Make inferences only from information supported by the passage.\n• Pay attention to how the information is organized.\n• For questions asking what is NOT mentioned, eliminate the choices that are stated in the passage.\n• Choose only ONE answer for each question.\n\nYou may refer back to the passage when necessary. Read efficiently and avoid spending too much time on any single question.\n\nSelect the answer that best answers each question based on the information in the passage." },
+            full: { 
+        title: "TOEFL ITP Full Test Simulator", 
+        text: "You are about to begin the complete TOEFL ITP Level 1 test. This test is designed to give you an experience similar to the official TOEFL ITP examination.\n\nThe test consists of three sections and 140 multiple-choice questions in total. You will have a total of 115 minutes to complete all three sections.\n\nTEST STRUCTURE:\n\nSection 1: Listening Comprehension — 50 questions — 35 minutes\nSection 2: Structure and Written Expression — 40 questions — 25 minutes\nSection 3: Reading Comprehension — 50 questions — 55 minutes\n\n", 
+        strategy: "• Read and listen to all instructions carefully before beginning each section.\nChoose the ONE answer that best answers each question.\nAnswer every question, even if you are not completely sure of the answer.\nIf you are unsure, eliminate the choices you know are incorrect and make your best choice.\nDo not spend too much time on any single question.\nKeep track of your time throughout the test.\nOnce you have completed a section, follow the test instructions before moving to the next section.\nDo not use dictionaries, translators, notes, or other study materials during the test.\nTry to complete the test in one sitting and in a quiet environment.\n\nTEST-TAKING REMINDERS:\n\nStay focused and work at a steady pace.\nDo not leave questions unanswered if you can make an informed guess.\nPay attention to key words and context.\nUse the time available for each section wisely.\nRemember that this is a full-length test, so manage your concentration and energy throughout the entire examination.\n\nWhen you are ready, begin the TOEFL ITP test simulator.\n\nGood luck!",
+        
+        // Mapeo interno por si la función busca dentro de 'full.listening', 'full.structure', 'full.reading'
+        listening: {
+            title: "Listening Comprehension",
+            text: "The Listening Comprehension section measures your ability to understand spoken English in conversations and academic situations. You will have 35 minutes to answer 50 multiple-choice questions.\n\nThis section consists of three parts:\n\nPART A: SHORT CONVERSATIONS\n\nYou will listen to short conversations between two speakers. Each conversation is followed by one question. You will hear the conversation and question only once, so listen carefully and focus on the speakers' main ideas, important details, and implied meaning.\n\nPART B: LONGER CONVERSATIONS\n\nYou will listen to longer conversations between two or more speakers. Each conversation is followed by several questions. Pay attention to the entire conversation because the questions may ask about the main idea, specific details, the speakers' intentions, or information that is implied. You will have 35 minutes to answer 50 questions in this section.\n\nPART C: SHORT TALKS\n\nYou will listen to short talks on academic topics. Each talk is followed by several questions. Focus on the main idea, supporting details, and the speaker's purpose. You will have 35 minutes to answer 50 questions in this section.",
+            strategy: "• Listen carefully to the entire conversation or talk before choosing an answer.\n• Focus on the main idea and the most important details.\n• Pay attention to changes in tone, emphasis, and the speakers' intentions.\n• Listen for paraphrases rather than expecting to hear the exact words used in the answer choices.\n• Pay attention to expressions, idioms, and words that may have a meaning different from their literal meaning.\n• Use the context to understand information that is implied but not directly stated.\n• Do not focus on understanding every single word. Concentrate on the overall meaning.\n• Read the answer choices quickly when possible and use them to anticipate what you should listen for.\n• Since the recordings are played according to the test instructions, stay focused and avoid distractions.\n• Choose the best answer based on what you hear, not on outside knowledge.\n\nRemember that listening comprehension requires you to understand both what the speakers say and what they mean. Stay focused, listen for key information, and use the context to make the best choice."
+        },
+        structure: {
+            title: "Structure & Written Expression",
+            text: "The Structure and Written Expression section measures your ability to recognize and use correct grammatical structures in written English. You will have 25 minutes to answer 40 multiple-choice questions.\n\nThis section consists of two parts:\n\nPART A: SENTENCE COMPLETION\n\nYou will read incomplete sentences with one blank. For each question, choose the word or phrase that correctly completes the sentence. These questions test your knowledge of grammar, sentence structure, verb forms, agreement, clauses, connectors, and other grammatical elements.\n\nPART B: ERROR IDENTIFICATION\n\nYou will read complete sentences containing four underlined words or phrases. One of them contains a grammatical error. You must identify the word or phrase that needs to be changed to make the sentence grammatically correct. You will have 25 minutes to answer 40 questions in this section.",
+            strategy: "• Read the entire sentence carefully before choosing an answer.\n• Identify the main subject and verb of the sentence.\n• Pay attention to subject-verb agreement and verb tense.\n• Check the relationship between words, phrases, and clauses.\n• Look for common grammar patterns and structures.\n• In Error Identification, examine each underlined part and determine which one does not fit grammatically.\n• Do not choose an answer simply because it sounds familiar; check whether it fits the entire sentence.\n• Eliminate options that are clearly incorrect before making your final choice.\n• If you are unsure, do not spend too much time on one question. Choose the best answer and continue.\n• Keep track of your time. You have approximately 37 seconds per question on average.\n• Answer every question before the time expires.\n\nRemember that the goal is not only to recognize individual grammar rules, but also to understand how the different parts of a sentence work together. Stay focused, manage your time carefully, and use the context of each sentence to guide your answers."
+        },
+        reading: {
+            title: "Reading Comprehension",
+            text: "In this section, you will read an academic passage followed by a series of multiple-choice questions. Read the passage carefully and use the information provided in the text to answer each question.\n\nThe questions may ask you to identify the main idea, specific details, vocabulary in context, references, inferences, or the organization of information. Some questions may also ask you to identify information that is NOT mentioned in the passage. You will have 55 minutes to answer 50 questions in this section.\n\nThe passages may cover a variety of academic topics, and the questions will test your ability to understand and analyze the information presented. You may refer back to the passage when necessary, but be mindful of your time.\n\n",
+            strategy: "• Read the passage carefully and focus on the main idea and supporting details.\n• Pay attention to key words, transition words, and relationships between ideas.\n• Use information from the passage to support your answers.\n• For vocabulary questions, use the surrounding context to determine the meaning of a word or phrase.\n• For reference questions, identify the word or idea that a pronoun or referring expression represents.\n• For inference questions, choose the answer that can be logically supported by the passage.\n• Eliminate answer choices that contradict the passage or are not supported by the text.\n• Do not rely on outside knowledge when the answer can be found in the passage.\n• Read each question carefully and make sure you understand what it is asking.\n• If you are unsure, eliminate the options you know are incorrect and choose the best remaining answer.\n\nRemember that the passage contains the information you need to answer the questions. Read actively, look for evidence in the text, and choose the answer that is best supported by the passage."
+        }
+    }
+};
 
         let filteredQuestions = [];
         let currentQuestionIndex = 0;
@@ -5308,36 +5329,51 @@
             return finalQueue;
         }
 
+        let testStarted = false;
+
         function prepareInstructionsScreen() {
-            let activeSection = currentSection;
-            if (currentSection === 'full') {
-                const currentQuestion = filteredQuestions[currentQuestionIndex];
-                activeSection = currentQuestion ? currentQuestion.section : 'listening';
-            }
+    // 1. Obtenemos la pregunta actual para saber en qué sección estamos realmente
+    const q = filteredQuestions[currentQuestionIndex];
+    
+    // 2. Si la pregunta existe y tiene sección (listening, structure o reading), usamos esa clave.
+    // De lo contrario, usamos currentSection como respaldo.
+    const key = (q && q.section) ? q.section : currentSection;
 
-            const info = sectionInfo[activeSection] || sectionInfo['full'];
-            document.getElementById('inst-title').innerText = info.title;
-            document.getElementById('inst-text').innerText = info.text;
-            document.getElementById('inst-strategy').innerText = info.strategy;
+    // 3. Obtenemos la información correspondiente (Listening, Structure o Reading)
+    const info = sectionInfo[key] || sectionInfo['full'];
 
-            document.getElementById('instructions-screen').classList.remove('hidden');
-            document.getElementById('test-screen').classList.add('hidden');
-        }
+    // 4. Inyectamos los textos en el HTML
+    const instTitle = document.getElementById('inst-title');
+    const instText = document.getElementById('inst-text');
+    const instStrategy = document.getElementById('inst-strategy');
+
+    if (instTitle) instTitle.innerText = info.title;
+    if (instText) instText.innerText = info.text;
+    if (instStrategy) instStrategy.innerText = info.strategy;
+
+    // 5. Mostramos la pantalla de instrucciones y ocultamos la del test
+    const instScreen = document.getElementById('instructions-screen');
+    const testScreen = document.getElementById('test-screen');
+
+    if (instScreen) instScreen.classList.remove('hidden');
+    if (testScreen) testScreen.classList.add('hidden');
+}
 
         function startTest() {
-            document.getElementById('instructions-screen').classList.add('hidden');
-            document.getElementById('test-screen').classList.remove('hidden');
-            
-            if (currentSection === 'full') {
-                const q = filteredQuestions[currentQuestionIndex];
-                if (lastSectionSeen !== q.section) {
-                    lastSectionSeen = q.section;
-                    secondsRemaining = SECTION_TIMES[q.section];
-                }
+        document.getElementById('instructions-screen').classList.add('hidden');
+        document.getElementById('test-screen').classList.remove('hidden');
+        
+        if (currentSection === 'full') {
+            const q = filteredQuestions[currentQuestionIndex];
+            if (q && lastSectionSeen !== q.section) {
+                lastSectionSeen = q.section;
+                secondsRemaining = SECTION_TIMES[q.section];
             }
-            startTimer();
-            showQuestion();
         }
+
+        startTimer();
+        showQuestion();
+    }
 
         function startTimer() {
             clearInterval(timerInterval);
@@ -5379,145 +5415,147 @@
         let lastTypeSeen = null; // 👈 AGREGAR ESTA VARIABLE GLOBAL
 
         function showQuestion() {
-            if (currentQuestionIndex >= filteredQuestions.length) {
-                endTest();
-                return;
-            }
+    if (currentQuestionIndex >= filteredQuestions.length) {
+        endTest();
+        return;
+    }
 
-            const q = filteredQuestions[currentQuestionIndex];
-            const currentType = q.subType || q.section;
+    const q = filteredQuestions[currentQuestionIndex];
+    const currentType = q.subType || q.section;
 
-            // Detecta cambio de subsección o sección (a partir de la pregunta 2)
-            if (currentQuestionIndex > 0 && lastTypeSeen && lastTypeSeen !== currentType) {
-                lastTypeSeen = currentType;
-                renderSubTypeSeparator(currentType);
-                return;
-            }
+    // Detecta cambio de subsección o el inicio de la primera pregunta (index == 0)
+    if (!lastTypeSeen || lastTypeSeen !== currentType) {
+        lastTypeSeen = currentType;
+        renderSubTypeSeparator(currentType);
+        // NOTA: Se eliminó el return; para que siempre pinte los elementos de la pregunta de fondo
+    }
 
-            lastTypeSeen = currentType;
+    selectedAnswerIndex = null;
+    isFeedbackState = false;
+    
+    // Actualizar la insignia de la sección
+    const badge = document.getElementById('section-badge');
+    if (badge) {
+        badge.innerText = q.section.toUpperCase();
+    }
 
-            selectedAnswerIndex = null;
-            isFeedbackState = false;
-            
-            // Actualizar la insignia de la sección
-            const badge = document.getElementById('section-badge');
-            if (badge) {
-                badge.innerText = q.section.toUpperCase();
-            }
+    // ACTUALIZACIÓN DEL CONTADOR DE PREGUNTAS
+    const counter = document.getElementById('question-counter');
+    if (counter) {
+        counter.innerText = `Question ${currentQuestionIndex + 1} of ${filteredQuestions.length}`;
+    }
 
-            // ACTUALIZACIÓN DEL CONTADOR DE PREGUNTAS
-            const counter = document.getElementById('question-counter');
-            if (counter) {
-                counter.innerText = `Question ${currentQuestionIndex + 1} of ${filteredQuestions.length}`;
-            }
+    // Resetear botón de acción y contenedor de feedback
+    const actionBtn = document.getElementById('action-btn');
+    if (actionBtn) {
+        actionBtn.innerText = "Check Answer";
+        actionBtn.className = "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer text-center";
+    }
+    
+    const feedbackContainer = document.getElementById('feedback-container');
+    if (feedbackContainer) {
+        feedbackContainer.classList.add('hidden');
+    }
 
-            // Resetear botón de acción y contenedor de feedback
-            const actionBtn = document.getElementById('action-btn');
-            actionBtn.innerText = "Check Answer";
-            actionBtn.className = "w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer text-center";
-            document.getElementById('feedback-container').classList.add('hidden');
+    // --- PARTE 1: MOSTRAR / OCULTAR EL PASSAGE ---
+    const passageContainer = document.getElementById('passage-container');
+    const passageText = document.getElementById('passage-text');
 
-            // --- PARTE 1: MOSTRAR / OCULTAR EL PASSAGE ---
-            const passageContainer = document.getElementById('passage-container');
-            const passageText = document.getElementById('passage-text');
+    if (passageContainer && passageText) {
+        if (q.passage) {
+            passageText.innerHTML = ""; 
 
-            if (q.passage) {
-                passageText.innerHTML = ""; 
+            if (Array.isArray(q.passage)) {
+                q.passage.forEach((lineContent, index) => {
+                    const lineNumber = index + 1;
+                    let indicator = "";
 
-                if (Array.isArray(q.passage)) {
-                    q.passage.forEach((lineContent, index) => {
-                        const lineNumber = index + 1;
-                        let indicator = "";
+                    if (lineNumber === 1) {
+                        indicator = "Line";
+                    } else if (lineNumber % 5 === 0) {
+                        indicator = lineNumber;
+                    }
 
-                        if (lineNumber === 1) {
-                            indicator = "Line";
-                        } else if (lineNumber % 5 === 0) {
-                            indicator = lineNumber;
-                        }
-
-                        const row = document.createElement('div');
-                        row.className = "flex items-start gap-4";
-                        row.innerHTML = `
-                            <div class="w-10 text-right text-xs text-gray-400 font-semibold select-none border-r border-gray-100 pr-2.5 min-h-[1.25rem]">
-                                ${indicator}
-                            </div>
-                            <div class="flex-1 text-gray-800 leading-relaxed font-sans text-sm">
-                                ${lineContent}
-                            </div>
-                        `;
-                        passageText.appendChild(row);
-                    });
-                } else {
-                    passageText.innerText = q.passage;
-                }
-                passageContainer.classList.remove('hidden');
-            } else {
-                passageContainer.classList.add('hidden');
-            }
-
-            // --- PARTE 2: PINTAR LA PREGUNTA ---
-            const questionTextElement = document.getElementById('question-text');
-            if (questionTextElement) {
-                questionTextElement.innerText = q.question;
-            }
-
-            // --- PARTE 3: PINTAR LAS OPCIONES DE RESPUESTA ---
-            const optionsContainer = document.getElementById('options-container');
-            if (optionsContainer) {
-                optionsContainer.innerHTML = ""; 
-
-                q.options.forEach((option, index) => {
-                    const button = document.createElement('button');
-                    
-                    button.id = `option-${index}`;
-                    button.className = "w-full flex items-center gap-3 border-2 border-gray-200 rounded-xl p-3.5 cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition duration-150 text-gray-700 font-medium text-sm text-left";
-                    button.innerText = option;
-                    button.onclick = () => selectOption(index); 
-                    
-                    optionsContainer.appendChild(button);
+                    const row = document.createElement('div');
+                    row.className = "flex items-start gap-4";
+                    row.innerHTML = `
+                        <div class="w-10 text-right text-xs text-gray-400 font-semibold select-none border-r border-gray-100 pr-2.5 min-h-[1.25rem]">
+                            ${indicator}
+                        </div>
+                        <div class="flex-1 text-gray-800 leading-relaxed font-sans text-sm">
+                            ${lineContent}
+                        </div>
+                    `;
+                    passageText.appendChild(row);
                 });
-            }
-
-            // --- PARTE 4: CONTROLAR EL AUDIO ---
-            const audioContainer = document.getElementById('audio-container');
-            const audioPlayer = document.getElementById('audio-player');
-            
-            if (q.section === 'listening' && q.audio) {
-                if (audioPlayer) {
-                    const SEGUNDOS_A_SALTAR = 1; // Ajusta los segundos aquí
-
-                    // Limpiamos eventos anteriores para evitar duplicados
-                    audioPlayer.onloadedmetadata = null;
-                    audioPlayer.onseeking = null;
-
-                    audioPlayer.src = q.audio;
-                    audioPlayer.load();
-
-                    // 1. Establecer el segundo cuando carga la pregunta
-                    audioPlayer.onloadedmetadata = function() {
-                        audioPlayer.currentTime = SEGUNDOS_A_SALTAR;
-                    };
-
-                    // 2. Si el usuario rebobina o el audio se reinicia por debajo del límite, forzar el inicio
-                    audioPlayer.onseeking = function() {
-                        if (audioPlayer.currentTime < SEGUNDOS_A_SALTAR) {
-                            audioPlayer.currentTime = SEGUNDOS_A_SALTAR;
-                        }
-                    };
-                }
-                if (audioContainer) {
-                    audioContainer.classList.remove('hidden');
-                }
             } else {
-                if (audioContainer) {
-                    audioContainer.classList.add('hidden');
-                }
-                if (audioPlayer) {
-                    audioPlayer.pause();
-                }
+                passageText.innerText = q.passage;
             }
+            passageContainer.classList.remove('hidden');
+        } else {
+            passageContainer.classList.add('hidden');
         }
+    }
 
+    // --- PARTE 2: PINTAR LA PREGUNTA ---
+    const questionTextElement = document.getElementById('question-text');
+    if (questionTextElement) {
+        questionTextElement.innerText = q.question;
+    }
+
+    // --- PARTE 3: PINTAR LAS OPCIONES DE RESPUESTA ---
+    const optionsContainer = document.getElementById('options-container');
+    if (optionsContainer) {
+        optionsContainer.innerHTML = ""; 
+
+        if (q.options) {
+            q.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.id = `option-${index}`;
+                button.className = "w-full flex items-center gap-3 border-2 border-gray-200 rounded-xl p-3.5 cursor-pointer hover:bg-gray-50 hover:border-gray-300 transition duration-150 text-gray-700 font-medium text-sm text-left";
+                button.innerText = option;
+                button.onclick = () => selectOption(index); 
+                optionsContainer.appendChild(button);
+            });
+        }
+    }
+
+    // --- PARTE 4: CONTROLAR EL AUDIO ---
+    const audioContainer = document.getElementById('audio-container');
+    const audioPlayer = document.getElementById('audio-player');
+    
+    if (q.section === 'listening' && q.audio) {
+        if (audioPlayer) {
+            const SEGUNDOS_A_SALTAR = 1;
+
+            audioPlayer.onloadedmetadata = null;
+            audioPlayer.onseeking = null;
+
+            audioPlayer.src = q.audio;
+            audioPlayer.load();
+
+            audioPlayer.onloadedmetadata = function() {
+                audioPlayer.currentTime = SEGUNDOS_A_SALTAR;
+            };
+
+            audioPlayer.onseeking = function() {
+                if (audioPlayer.currentTime < SEGUNDOS_A_SALTAR) {
+                    audioPlayer.currentTime = SEGUNDOS_A_SALTAR;
+                }
+            };
+        }
+        if (audioContainer) {
+            audioContainer.classList.remove('hidden');
+        }
+    } else {
+        if (audioContainer) {
+            audioContainer.classList.add('hidden');
+        }
+        if (audioPlayer) {
+            audioPlayer.pause();
+        }
+    }
+}
         function selectOption(selectedIndex) {
             if (isFeedbackState) return; 
 
@@ -5609,14 +5647,14 @@
             if (existingMascot) existingMascot.remove();
 
             // 3. SELECCIÓN DINÁMICA DE LA IMAGEN DE TOFI (Adaptada a tus nombres de archivo)
-            let seccionEspañol = q.section; // Por defecto
-            if (q.section === 'listening') seccionEspañol = 'listening';
-            if (q.section === 'structure') seccionEspañol = 'grammar';
-            if (q.section === 'reading') seccionEspañol = 'reading';
+            // ✅ AHORA (Genera: "Grammar TOFI Correcto.png")
+            let seccionEspañol = 'Grammar';
+            if (q.section === 'listening') seccionEspañol = 'Listening';
+            if (q.section === 'structure') seccionEspañol = 'Grammar';
+            if (q.section === 'reading') seccionEspañol = 'Reading';
 
-            const resultadoEspañol = isCorrect ? 'correcto' : 'incorrecto';
+            const resultadoEspañol = isCorrect ? 'Correcto' : 'Incorrecto';
 
-            // Esto construirá exactamente: "listening TOFI correcto.png", "structure TOFI incorrecto.png", etc.
             const mascotFilename = `${seccionEspañol} TOFI ${resultadoEspañol}.png`;
 
             // HTML con la imagen dinámica
@@ -5683,91 +5721,68 @@
         }
 
         function renderSubTypeSeparator(type) {
-            const config = {
-                short_dialogue: {
-                    title: "Part A: Short Conversations",
-                    desc: "You will hear short conversations. Choose the best answer for each question."
-                },
-                long_conversation: {
-                    title: "Part B: Long Conversations",
-                    desc: "Listen to the longer conversations and answer the group of questions that follow."
-                },
-                sentence_completion: {
-                    title: "Structure: Sentence Completion",
-                    desc: "Choose the word or phrase that best completes the sentence."
-                },
-                written_expression: {
-                    title: "Written Expression: Error Identification",
-                    desc: "Identify the underlined word or phrase that must be changed."
-                },
-                vocabulary: {
-                    title: "Reading: Vocabulary in Context",
-                    desc: "Choose the word closest in meaning to the highlighted word."
-                },
-                reading_passage: {
-                    title: "Reading: Reading Passages",
-                    desc: "Read the passage carefully and answer the questions based on the text."
-                }
-            };
-
-            const info = config[type] || { 
-                title: "Next Section", 
-                desc: "Get ready for the next group of questions." 
-            };
-
-            const testScreen = document.getElementById('test-screen');
-            testScreen.innerHTML = `
-                <div class="py-12 text-center space-y-6 max-w-md mx-auto">
-                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl font-bold mx-auto">
-                        📋
-                    </div>
-                    <div>
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Directions</span>
-                        <h2 class="text-2xl font-bold text-gray-900 mt-1">${info.title}</h2>
-                        <p class="text-gray-500 text-sm mt-2">${info.desc}</p>
-                    </div>
-                    <button onclick="continueAfterSeparator()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition cursor-pointer">
-                        Continue ➔
-                    </button>
-                </div>
-            `;
+    const config = {
+        short_dialogue: {
+            title: "Part A: Short Conversations",
+            desc: "Part A. In this section, you will listen to short conversations between two speakers. After each conversation, you will hear a question about what the speakers said. For each question, choose the best answer from the four choices provided. The choices are not spoken in the recording.\n\nListen carefully to the conversation and the question before selecting your answer. Pay attention to the speakers' main ideas, specific details, implied meanings, opinions, and expressions."
+        },
+        long_conversation: {
+            title: "Part B: Long Conversations",
+            desc: "In Part B, you will listen to longer conversations between two or more speakers. Each conversation is followed by several questions about what you heard. Listen carefully to the entire conversation, as the questions may focus on the main idea, specific details, the speakers' intentions, or information that is implied. Use the context and information from the conversation to choose the best answer for each question."
+        },
+        sentence_completion: {
+            title: "Part A: Sentence Completion",
+            desc: "Part A. In this part of Structure, you will read incomplete sentences with one blank. For each sentence, choose the word or phrase that correctly completes the sentence. Pay attention to grammar, sentence structure, verb forms, agreement, and meaning. Read the entire sentence before selecting your answer and choose the option that makes the sentence grammatically correct and complete."
+        },
+        written_expression: {
+            title: "Part B: Error Identification",
+            desc: "In Part B. In this part of Structure, you will read complete sentences containing an underlined word or phrase that is incorrect. For each sentence, identify the word or phrase that contains the grammatical error. Pay attention to grammar, verb forms, agreement, word choice, and sentence structure. Choose the option that needs to be changed to make the sentence grammatically correct."
+        },
+        vocabulary: {
+            title: "Part A: Vocabulary in Context",
+            desc: "In Part A. In this part of Reading, you will read academic passages and answer questions about the meaning of words or phrases in context. Use the information in the passage to determine the meaning of the highlighted word or phrase. Pay attention to the surrounding sentences and context, and choose the option that best matches its meaning."
+        },
+        reading_passage: {
+            title: "Reading Passages",
+            desc: "In this section, you will read academic passages and answer questions based on the information provided. Read the passage carefully and choose the best answer for each question. Pay attention to the main idea, supporting details, vocabulary in context, references, inferences, organization, and information that is not mentioned. Use the information in the passage to answer the questions accurately."
         }
+    };
 
-        function continueAfterSeparator() {
-            // Reconstruye la interfaz para que showQuestion() tenga dónde pintar la pregunta
-            document.getElementById('test-screen').innerHTML = `
-                <div class="mb-4">
-                    <div class="flex justify-between items-center mb-4">
-                        <span id="section-badge" class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded tracking-wide">Section</span>
-                        <span id="question-counter" class="text-xs text-gray-500 font-semibold tracking-wide">Question -- of --</span>
-                    </div>
+    const info = config[type] || { 
+        title: "Next Section", 
+        desc: "Get ready for the next group of questions." 
+    };
 
-                    <div id="audio-container" class="hidden mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl">
-                        <p class="text-xs font-bold text-slate-500 mb-1 flex items-center gap-1">🎧 Listen to the audio file:</p>
-                        <audio id="audio-player" controls class="w-full"></audio>
-                    </div>
+    // Quitamos cualquier modal activo previo
+    const oldModal = document.getElementById('subtype-separator-modal');
+    if (oldModal) oldModal.remove();
 
-                    <div id="passage-container" class="hidden mt-4 p-4 bg-white border border-gray-200 rounded-xl max-h-64 overflow-y-auto text-sm text-gray-700 shadow-inner">
-                        <p class="font-bold text-indigo-600 mb-3 text-xs uppercase tracking-wider">Reading Passage</p>
-                        <div id="passage-text" class="flex flex-col gap-1.5 font-sans"></div>
-                    </div>
-
-                    <p id="question-text" class="text-lg font-medium text-gray-900 mt-4 leading-snug"></p>
+    // Inyectamos el modal superpuesto en el cuerpo del documento
+    const separatorHTML = `
+        <div id="subtype-separator-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+            <div class="bg-white rounded-3xl p-8 text-center max-w-lg w-full shadow-2xl flex flex-col items-center">
+                <div class="w-16 h-16 bg-indigo-50 text-indigo-500 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-sm">
+                    📋
                 </div>
-
-                <div id="options-container" class="space-y-3 my-6"></div>
-
-                <button id="action-btn" onclick="handleAction()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 cursor-pointer text-center">
-                    Check Answer
+                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest block mb-1">DIRECTIONS</span>
+                <h2 class="text-2xl font-black text-slate-900 mb-3">${info.title}</h2>
+                <p class="text-gray-500 text-sm leading-relaxed mb-8">${info.desc}</p>
+                <button onclick="continueAfterSeparator()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-6 rounded-xl transition duration-200 cursor-pointer shadow-md shadow-indigo-100 flex items-center justify-center gap-2">
+                    Continue ➔
                 </button>
+            </div>
+        </div>
+    `;
 
-                <div id="feedback-container" class="hidden mt-6 mb-2 border rounded-xl p-4 flex items-start gap-4 transition-all duration-300 max-h-48 overflow-y-auto">
-                    <div id="feedback-text" class="font-medium text-sm leading-relaxed text-gray-800 w-full"></div>
-                </div>
-            `;
-            
-            showQuestion();
-        }
+    document.body.insertAdjacentHTML('beforeend', separatorHTML);
+}
+
+function continueAfterSeparator() {
+    const modal = document.getElementById('subtype-separator-modal');
+    if (modal) {
+        modal.remove();
+    }
+} 
     </script>
 </body>
 </html>
